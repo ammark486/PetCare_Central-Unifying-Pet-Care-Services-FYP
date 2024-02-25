@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.ProductDto;
-import com.example.demo.dto.Test;
 import com.example.demo.model.Product;
 import com.example.demo.repository.ProductRepo;
 import com.example.demo.service.ProductService;
@@ -46,12 +45,5 @@ public class ProductController {
     @GetMapping("/product/categoryId/{id}")
     ResponseEntity<Message<List<Product>>> getProductByCategoryId(@PathVariable Long id){
         return ResponseEntity.ok(this.productService.getProductByCategoryId(id));
-    }
-
-    @GetMapping("/test")
-    ResponseEntity<Test> test(){
-        Test test = new Test();
-        test.setMessage("hello world");
-        return ResponseEntity.ok(test);
     }
 }
