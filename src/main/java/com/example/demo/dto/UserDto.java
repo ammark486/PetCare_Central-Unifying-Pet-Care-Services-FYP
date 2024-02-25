@@ -1,9 +1,6 @@
-package com.example.demo.model;
+package com.example.demo.dto;
 
 import lombok.*;
-
-import javax.persistence.*;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -12,11 +9,7 @@ import java.util.List;
 @Setter
 @ToString
 @Builder
-@Entity
-@Table(name = "user")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class UserDto {
     private Long id;
     private String userName;
     private String password;

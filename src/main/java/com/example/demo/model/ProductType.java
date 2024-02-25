@@ -1,9 +1,6 @@
 package com.example.demo.model;
-
 import lombok.*;
-
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -13,12 +10,10 @@ import java.util.List;
 @ToString
 @Builder
 @Entity
-@Table(name = "user")
-public class User {
+public class ProductType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String userName;
-    private String password;
-    private boolean status;
+    private String name;
+    private Boolean isActive;
 }

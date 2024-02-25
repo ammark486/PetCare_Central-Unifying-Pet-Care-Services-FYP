@@ -31,7 +31,7 @@ public class LoginController {
     public ResponseEntity<?> createAuthenticationToken(@RequestBody LoginCredential loginCredentials) throws Exception {
         try {
             authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(loginCredentials.getName(),loginCredentials.getPassword())
+                    new UsernamePasswordAuthenticationToken(loginCredentials.getUserName(),loginCredentials.getPassword())
             );
         }
         catch(BadCredentialsException e){
@@ -39,7 +39,7 @@ public class LoginController {
             throw new Exception("Incorrect Username or Password ! ",e);
         }
 
-        UserDetails userDetails = myUserDetailService.loadUserByUsername(loginCredentials.getName());
+        UserDetails userDetails = myUserDetailService.loadUserByUsername(loginCredentials.getUserName());
         String jwtToken = jwtUtil.generateToken(userDetails);
 
         return ResponseEntity.ok(new AuthenticationResponse(jwtToken));

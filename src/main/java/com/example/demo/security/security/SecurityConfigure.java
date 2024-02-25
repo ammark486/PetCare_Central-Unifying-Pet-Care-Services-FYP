@@ -36,8 +36,10 @@ class SecurityConfigure extends WebSecurityConfigurerAdapter {
         http.headers().cacheControl();
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/api/login").permitAll().
-                anyRequest().authenticated()
+                .antMatchers("/api/login").permitAll()
+                .antMatchers("/api/sign-up").permitAll()
+                .antMatchers("/api/file/**").permitAll()
+                .anyRequest().authenticated()
                 .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
         http.cors();

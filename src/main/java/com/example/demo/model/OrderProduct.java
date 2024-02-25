@@ -3,7 +3,6 @@ package com.example.demo.model;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -13,12 +12,13 @@ import java.util.List;
 @ToString
 @Builder
 @Entity
-@Table(name = "user")
-public class User {
+public class OrderProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String userName;
-    private String password;
-    private boolean status;
+    @ManyToOne
+    private MasterOrder masterOrder;
+    @ManyToOne
+    private Product product;
+    private Integer count;
 }
