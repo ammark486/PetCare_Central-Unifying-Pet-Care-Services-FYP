@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Care Central : Unifying Pet Care Services</title>
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <!-- Bootstrap 5 CDN Links -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Custom File's Link -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive-style.css">
+
+</head>
+
+<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="100">
+    
+        <!-- Navbar section --> 
+        <header class="header_wrapper">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container">
+                  <a class="navbar-brand" href="#">
+                      <img decoding="async" src="images/logo.png" class="img-fluid" alt="Logo" width="170" height="100" >
+                  </a>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <!-- <span class="navbar-toggler-icon"></span> -->
+                    <i class="fas fa-stream navbar-toggler-icon"></i>
+                  </button>
+                  <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                    <ul class="navbar-nav  menu-navbar-nav">
+                      <li class="nav-item">
+                        <a class="nav-link" href="#myappointment">My Appointment</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="#appointmenthistory">Appointment History</a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#consultationhours">Consultation Hours</a>
+                      </li>
+                    </ul>
+                </div>
+                <!-- Image in the top-right corner of the navbar -->
+                <img src="./images/vet-profile-logo.png" alt="Corner Image-2" class="corner-image">
+                   </nav>
+                  </div>
+                </div>
+              </nav>
+        </header>
+    
+        <!-- Navbar section exit -->
+
+    <!-- My appointment section -->
+<section id="consultationhours" class="about_wrapper wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 text-center mb-4">
+                <h2>Consultation Hours</h2>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped table-hover custom-table">
+                            <thead class="thead-dark">
+                                <tr>
+                                    <th>Day</th>
+                                    <th>Start Time</th>
+                                    <th>End Time</th>
+                             
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Monday</td>
+                                    <td>9:00 A.M</td>
+                                    <td>6.00 P.M</td>
+                                    
+                                </tr>
+                                <tr>
+                                    <td>Tuesday</td>
+                                    <td>9:00 A.M</td>
+                                    <td>6.00 P.M</td>
+                                </tr>
+                                <tr>
+                                    <td>Wednesday</td>
+                                    <td>9:00 A.M</td>
+                                    <td>6.00 P.M</td>
+                                </tr>
+                                <tr>
+                                    <td>Thursday</td>
+                                    <td>9:00 A.M</td>
+                                    <td>6.00 P.M</td>
+                                </tr>
+                                <tr>
+                                    <td>Friday</td>
+                                    <td>9:00 A.M</td>
+                                    <td>6.00 P.M</td>
+                                </tr>
+                                <tr>
+                                    <td>Saturday</td>
+                                    <td>9:00 A.M</td>
+                                    <td>6.00 P.M</td>
+                                </tr> 
+                                <!-- Add more rows as needed -->
+                            </tbody>
+                        </table>
+                        <button class="btn btn-primary float-right" onclick="editConsultationHours()">Edit My Consultation Hours</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- My appointment section exit -->
+
+     <!-- Footer section --> 
+     <section id="contact" class="footer_wrapper wrapper">
+        <div class="container pb-3">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5>Have a Question?</h5>
+                    <p class="ps-0">Join our veterinary team at Pet Care Central! If you're a skilled and passionate vet, let's make a difference in pet health together. Explore opportunities and start your journey with us!</p>
+                    <div class="contact-info">
+                        <ul class="list-unstyled p-0">
+                            <li><a href="#"><i class="fa fa-envelope me-3"></i>info@petcarecentral.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5></h5>
+                    <ul class="link-widget p-0">
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5>About Vet</h5>
+                    <ul class="link-widget p-0">
+                        <li><a href="#">My Appointment</a></li>
+                        <li><a href="#">Appointment History</a></li>
+                        <li><a href="#">Consultation Hours</a></li>
+                        
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5>Contact Us</h5>
+                    <div class="form-group mb-4">
+                        <input type="email" class="form-control bg-transparent" placeholder="Enter Your Email Here">
+                        <button type="submit" class="main-btn rounded-2 mt-3 border-white text-white">Submit</button>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+        <div class="container-fluid copyright-section">
+            <p class="p-0">Copyright <a href="#">© PETCARECENTRAL.</a> All Rights Reserved</p>
+        </div>
+    </section>
+
+    <!-- Footer section exit -->
+
+    <!-- Bootstrap 5 JS CDN Links -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+
+    <!-- Custom Js Link -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>
+

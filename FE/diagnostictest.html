@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Care Central : Unifying Pet Care Services</title>
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <!-- Bootstrap 5 CDN Links -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Custom File's Link -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive-style.css">
+
+</head>
+
+<body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="100">
+    
+    <!-- Navbar section --> 
+    <header class="header_wrapper">
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+              <a class="navbar-brand" href="#">
+                  <img decoding="async" src="images/logo.png" class="img-fluid" alt="Logo" width="170" height="100" >
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <!-- <span class="navbar-toggler-icon"></span> -->
+                <i class="fas fa-stream navbar-toggler-icon"></i>
+              </button>
+              <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav  menu-navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link"href="#home">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#about">About</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#services">Services <span class="dropdown-arrow">&#9662;</span></a>
+                    <ul class="dropdown-menu">
+                        <!-- Add individual service links within this list -->
+                        <li><a href="#service1">Vaccination</a></li>
+                        <li><a href="#service2">Pet Grooming</a></li>
+                        <li><a href="#service3">Dental Care</a></li>
+                        <li><a href="#service4">General Checkup & Consultation</a></li>
+                        <li><a href="#service5">Surgeries</a></li>
+                        <li><a href="#service6">Diagnostic tests</a></li>
+                        <li><a href="#service7">General Treatment</a></li>
+
+                        <!-- Add more services as needed -->
+                      </ul>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#blog">Blog</a>
+                  </li>
+                  <li class="nav-item ">
+                    <a class="nav-link mt-3 mt-lg-0" href="#contact">Contact</a>
+                  </li>
+                </ul>
+            </div>
+            <!-- Image in the top-right corner of the navbar -->
+            <img src="./images/profile-logo.jpg" alt="Corner Image" class="corner-image">
+               </nav>
+              </div>
+            </div>
+          </nav>
+    </header>
+
+    <!-- Navbar section exit -->
+
+      <!-- diagnostic test section --> 
+
+      <section id="diagnostictest" class="services_wrapper wrapper">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-12 mb-5">
+                    <!-- Smaller image centered above the heading -->
+                    <img decoding="async" src="./images/services/diagnostictest.png" class="img-fluid"  style="max-width: 60px;">
+                </div>
+                <div class="col-md-12 mb-5">
+                    <div>
+                        <h2 style="color: white;">DIAGNOSTIC LAB TEST</h2>
+                        <p style="color: white;">
+                            "At Pet Care Central, we conduct comprehensive lab tests tailored to your pet's needs. Our state-of-the-art facilities and experienced professionals ensure accurate diagnostics, allowing us to provide timely and precise care. From routine screenings to specialized tests, we prioritize your pet's health through advanced laboratory services."
+                        </p>
+                        <!-- Book Appointment button with white text color -->
+                        <button class="btn btn-pink text-white">Book Appointment</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+<!-- diagnostic test section exit --> 
+
+   <!-- diagnostic test 2  section --> 
+   <section id="diagnostictest2" class="about_wrapper wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mb-mb-0 mb-5">
+                <div class="position-relative">
+                    <img decoding="async" src="https://media0.giphy.com/media/9zmwAJH0MzeDEXb84i/giphy.gif?cid=ecf05e477taqj5265i1571eiwkj2yq448er17brmcf6vw0gc&ep=v1_gifs_search&rid=giphy.gif&ct=g" class="img-fluid" width="150%" height="310%" style="margin-right: 35%;" style="margin-top: 60%;" style="margin-bottom: 60%;">
+                </div>
+            </div>
+            <div class="col-md-6 text-center text-md-start">
+                <h2>About Our Pet Lab Tests Service</h2>
+                
+                <p>"At Pet Care Central, we understand the importance of accurate diagnostics in maintaining your pet's health. Our state-of-the-art laboratory is equipped to perform a wide range of tests to assess your pet's overall well-being. From routine blood tests to specialized screenings, we provide lab services tailored to your pet's specific needs. Whether it's preventive care or investigating a specific concern, trust Pet Care Central for reliable and efficient lab testing to ensure your furry friend leads a happy and healthy life."</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- diagnostic test 2 section exit -->
+    
+    <!-- Footer section --> 
+    <section id="contact" class="footer_wrapper wrapper">
+        <div class="container pb-3">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5>Have a Question?</h5>
+                    <p class="ps-0">At Pet Care Central, we're dedicated to guiding pet owners. We prioritize advice over sales, so feel free to ask us anything if you're confused about your pet's needs.</p>
+                    <div class="contact-info">
+                        <ul class="list-unstyled p-0">
+                            <li><a href="#"><i class="fa fa-envelope me-3"></i>info@petcarecentral.com</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5>Top Product</h5>
+                    <ul class="link-widget p-0">
+                        <li><a href="#">Pets</a></li>
+                        <li><a href="#">Pet Accessories</a></li>
+                        <li><a href="#">Pet Food</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5>Services</h5>
+                    <ul class="link-widget p-0">
+                        <li><a href="#">Vaccination</a></li>
+                        <li><a href="#">Pet Grooming</a></li>
+                        <li><a href="#">Surgeries</a></li>
+                        <li><a href="#">Dental Care</a></li>
+                        <li><a href="#">General Checkup & Consultation</a></li>
+                        <li><a href="#">Diagnostic tests</a></li>
+                        <li><a href="#">General Treatment</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5>Contact Us</h5>
+                    <div class="form-group mb-4">
+                        <input type="email" class="form-control bg-transparent" placeholder="Enter Your Email Here">
+                        <button type="submit" class="main-btn rounded-2 mt-3 border-white text-white">Submit</button>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+        <div class="container-fluid copyright-section">
+            <p class="p-0">Copyright <a href="#">© PETCARECENTRAL.</a> All Rights Reserved</p>
+        </div>
+    </section>
+
+    <!-- Footer section exit -->
+
+    <!-- Bootstrap 5 JS CDN Links -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+
+    <!-- Custom Js Link -->
+    <script src="js/main.js"></script>
+    <script src="js/navbar.js"></script>
+    <script src="js/diagnostic.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Care Central : Unifying Pet Care Services</title>
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="images/favicon.png">
+
+    <!-- Montserrat Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+<div class="grid-container">
+
+    <!-- Header -->
+    <header class="header">
+        <div class="menu-icon" onclick="openSidebar()">
+            <span class="material-icons-outlined">menu</span>
+        </div>
+        <div class="header-left">
+            <span class="material-icons-outlined">search</span>
+        </div>
+        <div class="header-right">
+            <span class="material-icons-outlined">account_circle</span>
+        </div>
+    </header>
+    <!-- End Header -->
+
+    <!-- Sidebar -->
+    <aside id="sidebar">
+        <div class="sidebar-title">
+            <div class="sidebar-brand">
+                <span class="material-icons-outlined">pets</span> Pet Care Central
+            </div>
+            <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+        </div>
+
+        <ul class="sidebar-list">
+            <li class="sidebar-list-item" data-page="admindashboard.html">
+                <a href="#">
+                    <span class="material-icons-outlined">dashboard</span> Dashboard
+                </a>
+            </li>
+            <li class="sidebar-list-item" data-page="permission.html">
+                <a href="#">
+                    <span class="material-icons-outlined">shield</span> Permission
+                </a>
+            </li>
+            <li class="sidebar-list-item" data-page="management.html">
+                <a href="#">
+                    <span class="material-icons-outlined">settings</span> Management
+                    <span class="material-icons-outlined">keyboard_arrow_down</span> <!-- Dropdown arrow icon -->
+                </a>
+                <!-- Dropdown menu -->
+                <ul class="dropdown-menu">
+                    <li><a href="#">Add</a></li>
+                    <li><a href="#">Edit</a></li>
+                    <li><a href="#">View</a></li>
+                </ul>
+            </li>
+        </ul>
+
+    </aside>
+
+    <!-- Main -->
+    <main class="main-container">
+      <div class="main-title">
+          <p class="font-weight-bold">MANAGEMENT</p>
+      </div>
+      <!-- Dropdown menu for product types -->
+      <div class="form-group">
+        <label for="productType">Product Type:</label>
+        <select id="productType" class="form-control">
+          <option value="">Select Product Type</option>
+          <option value="petfood">Pet Food</option>
+          <option value="petaccessories">Pet Accessories</option>
+          <option value="petgroomingsupplies">Pet Grooming Supplies</option>
+          <option value="cat">Cat</option>
+          <option value="dog">Dog</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="category">Category:</label>
+        <select id="category" class="form-control">
+          <option value="">Select Category</option>
+        </select>
+      </div>
+  
+      <div class="table-box">
+        <table id="productTable" class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Description</th>
+              <th>Image</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="productTableBody"></tbody>
+        </table>
+
+  </main>
+
+</div>
+
+<!-- Custom JS -->
+
+<script src="js/dashboard.js"></script>
+<script src="js/managementview.js"></script>
+<script src="js/adminsidebar.js"></script>
+
+</body>
+</html>

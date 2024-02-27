@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Pet Care Central : Unifying Pet Care Services</title>
+
+        <!-- FAVICON -->
+        <link rel="icon" type="image/png" href="images/favicon.png">
+
+
+    <!-- Montserrat Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/admin.css">
+
+  </head>
+  <body>
+    <div class="grid-container">
+
+      <!-- Header -->
+      <header class="header">
+        <div class="menu-icon" onclick="openSidebar()">
+          <span class="material-icons-outlined">menu</span>
+        </div>
+        <div class="header-left">
+          <span class="material-icons-outlined">search</span>
+        </div>
+        <div class="header-right">
+          <span class="material-icons-outlined">account_circle</span>
+        </div>
+      </header>
+      <!-- End Header -->
+
+      <!-- Sidebar -->
+      <aside id="sidebar">
+        <div class="sidebar-title">
+          <div class="sidebar-brand">
+            <span class="material-icons-outlined">pets</span> Pet Care Central
+          </div>
+          <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+        </div>
+
+        <ul class="sidebar-list">
+          <li class="sidebar-list-item" data-page="admindashboard.html">
+              <a href="#">
+                  <span class="material-icons-outlined">dashboard</span> Dashboard
+              </a>
+          </li>
+          <li class="sidebar-list-item" data-page="permission.html">
+              <a href="#">
+                  <span class="material-icons-outlined">shield</span> Permission
+              </a>
+          </li>
+          <li class="sidebar-list-item" data-page="management.html">
+              <a href="#">
+                  <span class="material-icons-outlined">settings</span> Management
+              </a>
+          </li>
+      </ul>
+      
+      </aside>
+      <!-- End Sidebar -->
+
+<!-- Main -->
+<main class="main-container">
+  <div class="main-title">
+    <p class="font-weight-bold">ROLES</p>
+  </div>
+
+  <div class="main-dropdown">
+    <label for="role-dropdown">Select Role:</label>
+    <select id="role-dropdown" class="form-select" onchange="handleRoleChange()">
+      <option value="admin">Admin</option>
+      <option value="user">User</option>
+      <option value="vet">Vet</option>
+    </select>
+  </div>
+
+
+  <div class="main-cards">
+    <div class="role-details" id="admin-details">
+      <h2>Admin Role Details</h2>
+      <div class="role-permissions">
+        <div>
+          <input type="checkbox" id="usermanagementaccess" name="viewmanagement">
+          <label for="viewmanagement">User Mangement Access</label>
+        </div>
+        <div>
+          <input type="checkbox" id="editmanagement" name="vetmanagementaccess">
+          <label for="editmanagement">Vet Management Access</label>
+        </div>
+        <div>
+          <input type="checkbox" id="permissioncreate" name="addproducts">
+          <label for="addproducts">Permission Create</label>
+        </div>
+        <div>
+          <input type="checkbox" id="permissionshow" name="viewproducts">
+          <label for="viewproducts">Permission show</label>
+        </div>
+        <div>
+          <input type="checkbox" id="permissiondelete" name="deleteproducts">
+          <label for="deleteproducts">Permission Delete</label>
+        </div>
+        <div>
+          <input type="checkbox" id="rolecreate" name="viewprofile">
+          <label for="viewprofile">Role Create</label>
+        </div>
+        <div>
+          <input type="checkbox" id="roleedit" name="pets">
+          <label for="viewprofile">Role Edit</label>
+        </div>
+        <div>
+          <input type="checkbox" id="roledelete" name="pets">
+          <label for="viewprofile">Role Delete</label>
+        </div>
+        <div>
+          <input type="checkbox" id="pet" name="pets">
+          <label for="viewprofile">Pets</label>
+        </div>
+        <div>
+          <input type="checkbox" id="accessories" name="pets">
+          <label for="viewprofile">Pets Accessories</label>
+        </div>
+      </div>
+    </div>
+    
+
+  </div>
+  <!-- Add the following code inside the main-cards div, under the existing role-details div -->
+  <div class="main-cards">
+<div class="role-details" id="vet-details">
+  <h2>Vet Role Details</h2>
+  <div class="role-permissions">
+    <div>
+      <input type="checkbox" id="viewmyappointments" name="viewmyappointments">
+      <label for="viewmyappointments">View My Appointments</label>
+    </div>
+    <div>
+      <input type="checkbox" id="viewappointmenthistory" name="viewappointmenthistory">
+      <label for="viewappointmenthistory">View Appointment History</label>
+    </div>
+    <div>
+      <input type="checkbox" id="viewconsultationhours" name="viewconsultationhours">
+      <label for="viewconsultationhours">View Consultation Hours</label>
+    </div>
+    <div>
+      <input type="checkbox" id="editconsultationhours" name="editconsultationhours">
+      <label for="editconsultationhours">Edit Consultation Hours</label>
+    </div>
+    <div>
+      <input type="checkbox" id="deleteconsultationhours" name="deleteconsultationhours">
+      <label for="deleteconsultationhours">Delete Consultation Hours</label>
+    </div>
+    <div>
+      <input type="checkbox" id="vetviewprofile" name="vetviewprofile">
+      <label for="vetviewprofile">View Profile</label>
+    </div>
+    <div>
+      <input type="checkbox" id="veteditprofile" name="veteditprofile">
+      <label for="veteditprofile">Edit Profile</label>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="main-cards">
+  <div class="role-details" id="user-details">
+    <h2>Customer Role Details</h2>
+    <div class="role-permissions">
+      <div>
+        <input type="checkbox" id="viewservices" name="viewservices">
+        <label for="viewmyappointments">View Services</label>
+      </div>
+      <div>
+        <input type="checkbox" id="viewhome" name="viewhome">
+        <label for="viewappointmenthistory">View Home</label>
+      </div>
+      <div>
+        <input type="checkbox" id="viewabout" name="viewabout">
+        <label for="viewconsultationhours">View About</label>
+      </div>
+      <div>
+        <input type="checkbox" id="viewblog" name="viewblog">
+        <label for="editconsultationhours">View Blog</label>
+      </div>
+      <div>
+        <input type="checkbox" id="viewappontments" name="viewappontments">
+        <label for="deleteconsultationhours">View Vet Appointments slot</label>
+      </div>
+      <div>
+        <input type="checkbox" id="viewprofile" name="viewprofile">
+        <label for="vetviewprofile">View Profile</label>
+      </div>
+      <div>
+        <input type="checkbox" id="editprofile" name="editprofile">
+        <label for="veteditprofile">Edit Profile</label>
+      </div>
+    </div>
+  </div>
+  </div>
+  
+
+</main>
+<!-- End Main -->
+
+    </div>
+
+  
+
+  
+    <!-- Custom JS -->
+  
+    <script src="js/dashboard.js"></script>
+    <script src="js/permission.js"></script>
+    <script src="js/adminsidebar.js"></script>
+  </body>
+</html>
