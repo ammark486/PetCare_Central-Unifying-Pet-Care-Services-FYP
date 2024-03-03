@@ -24,8 +24,8 @@ public class ProductTypeService {
         return ResponseService.responseData( "save data successfully", this.productTypeRepo.save(productType));
     }
 
-    public Message<List<ProductType>> getAllProductTypes(Boolean isActive) {
-        List<ProductType> productTypeList = this.productTypeRepo.findAllByIsActive(isActive);
+    public Message<List<ProductType>> getAllProductTypes(String type, Boolean isActive) {
+        List<ProductType> productTypeList = this.productTypeRepo.findAllByTypeAndIsActive(type, isActive);
         if(!productTypeList.isEmpty()){
             return ResponseService.responseData("fetch data successfully", productTypeList);
         }

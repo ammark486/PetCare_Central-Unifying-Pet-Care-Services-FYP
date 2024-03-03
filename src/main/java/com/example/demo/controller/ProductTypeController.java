@@ -24,8 +24,8 @@ public class ProductTypeController {
     }
 
     @GetMapping("/product-type")
-    ResponseEntity<Message<List<ProductType>>> getAllProductTypes(@RequestParam Boolean isActive){
-        return ResponseEntity.ok(this.productTypeService.getAllProductTypes(isActive));
+    ResponseEntity<Message<List<ProductType>>> getAllProductTypes(@RequestParam String type, @RequestParam Boolean isActive){
+        return ResponseEntity.ok(this.productTypeService.getAllProductTypes(type, isActive));
     }
 
 }

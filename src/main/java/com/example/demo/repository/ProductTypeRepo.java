@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface ProductTypeRepo extends JpaRepository<ProductType, Long> {
-    List<ProductType> findAllByIsActive(Boolean isActive);
+    List<ProductType> findAllByTypeAndIsActive(String type, Boolean isActive);
 }
