@@ -94,7 +94,7 @@ const productCategories = {
       });
       document.getElementById('category-by-product').innerHTML = data;
     } else {
-     alert(response.message);
+      document.getElementById('category-by-product').innerHTML = '';
     }
     
   }
@@ -162,5 +162,50 @@ const productCategories = {
       console.error("Error:", response.statusText);
     }
 
+  }
+
+  async function addProduct(){
+    debugger;
+    const formData = new FormData();
+    const productDto = {
+        name: document.getElementById('productName').value,
+        price: document.getElementById('productPrice').value,
+        description: document.getElementById('productDescription').value,
+        age: document.getElementById('age').value,
+        color: document.getElementById('color').value,
+        isActive: document.getElementById('productIsActive').checked,
+        category: {
+            id: document.getElementById('category-by-product').value
+        }
+    };
+    formData.append('productDto', new Blob([JSON.stringify(productDto)], { type: 'application/json' }));
+
+    const fileInput = document.getElementById('productImage');
+    const file = fileInput.files[0];
+    formData.append('file', file);
+
+    const token = localStorage.getItem("jwt");
+    let response = await fetch("http://localhost:8080/api/product", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+      body: formData,
+    });
+
+    response = await response.json();
+
+    if (response.status === 403) {
+      alert("Forbidden: You do not have permission to access this resource.");
+    }
+    if (response.status === 401) {
+        window.location.href = 'customersignin.html';
+    } else if (response.status == 200) {
+      debugger;
+      showProductTypes();
+      alert(response.message);
+    } else {
+      console.error("Error:", response.message);
+    }
   }
   
