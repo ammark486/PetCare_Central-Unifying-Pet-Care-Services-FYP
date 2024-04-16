@@ -35,11 +35,12 @@ public class ProductService {
         this.productRepo = productRepo;
         this.fileService = fileService;
     }
-        public Message<ProductDto> save(ProductDto productDto, MultipartFile file) {
+        public Message<ProductDto> save(Product productDto, MultipartFile file) {
             try {
             String imagePath = this.fileService.uploadFile(path, file);
             productDto.setImageUrl(Url.IMAGE_URL + imagePath);
-            Product saveProduct = this.productRepo.save(this.modelMapper.map(productDto, Product.class));
+            Product saveProduct = this.productRepo.save(productDto);
+//            Product saveProduct = this.productRepo.save(this.modelMapper.map(productDto, Product.class));
             Message<ProductDto> message = new Message<>();
             message.setCode(StatusCode.OK.name());
             message.setStatus(StatusCode.OK.value());

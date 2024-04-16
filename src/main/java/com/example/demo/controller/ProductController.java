@@ -25,7 +25,7 @@ public class ProductController {
 
     @PostMapping("/product")
     public ResponseEntity<Message<ProductDto>> save(
-            @RequestPart("productDto") ProductDto productDto,
+            @RequestPart("productDto") Product productDto,
             @RequestPart("file") MultipartFile file) {
         return ResponseEntity.ok(this.productService.save(productDto, file));
     }

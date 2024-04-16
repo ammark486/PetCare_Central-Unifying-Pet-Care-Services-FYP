@@ -94,7 +94,7 @@ const productCategories = {
       });
       document.getElementById('category-by-product').innerHTML = data;
     } else {
-      document.getElementById('category-by-product').innerHTML = '';
+     alert(response.message);
     }
     
   }
@@ -163,9 +163,8 @@ const productCategories = {
     }
 
   }
-
+  
   async function addProduct(){
-    debugger;
     const formData = new FormData();
     const productDto = {
         name: document.getElementById('productName').value,
@@ -173,11 +172,12 @@ const productCategories = {
         description: document.getElementById('productDescription').value,
         age: document.getElementById('age').value,
         color: document.getElementById('color').value,
-        isActive: document.getElementById('productIsActive').checked,
+        isActive: document.getElementById('productIsActive').value,
         category: {
-            id: document.getElementById('category-by-product').value
+            id: Number(document.getElementById('category-by-product').value)
         }
     };
+    console.log(productDto)
     formData.append('productDto', new Blob([JSON.stringify(productDto)], { type: 'application/json' }));
 
     const fileInput = document.getElementById('productImage');
@@ -208,4 +208,3 @@ const productCategories = {
       console.error("Error:", response.message);
     }
   }
-  
