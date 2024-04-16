@@ -28,7 +28,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
-    private Boolean isActive;
+    private Boolean isActive = true;
 
     @JsonIgnoreProperties
     @ManyToOne

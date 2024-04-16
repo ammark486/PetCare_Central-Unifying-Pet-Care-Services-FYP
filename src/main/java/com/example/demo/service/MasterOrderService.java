@@ -12,10 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.security.Principal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ThreadLocalRandom;
 import java.util.stream.Collectors;
 
 @Service
@@ -24,18 +25,22 @@ public class MasterOrderService {
     private final MasterOrderRepo masterOrderRepo;
     private final OrderService orderService;
     private final ProductService productService;
+    private final UserService userService;
     @Autowired
     ModelMapper modelMapper;
 
-    public MasterOrderService(MasterOrderRepo masterOrderRepo, OrderService orderService, ProductService productService) {
+    public MasterOrderService(MasterOrderRepo masterOrderRepo, OrderService orderService, ProductService productService, UserService userService) {
         this.masterOrderRepo = masterOrderRepo;
         this.orderService = orderService;
         this.productService = productService;
+        this.userService = userService;
     }
 
     @Transactional
-    public Message<MasterOrderDto> saveOrder(MasterOrderDto masterOrderDto){
+    public Message<MasterOrderDto> saveOrder(MasterOrderDto masterOrderDto, Principal principal){
        try {
+           masterOrderDto.setUser(this.userService.findByUserName(principal.getName()));
+           masterOrderDto.setOrderDate(LocalDate.now());
            List<OrderProduct> orderProducts = new ArrayList<>();
            List<Long> productIds = masterOrderDto.getProductIds().keySet().stream().collect(Collectors.toList());
            Integer totalAmount = 0;

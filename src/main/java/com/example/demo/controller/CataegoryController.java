@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.CategoryDto;
 import com.example.demo.model.Category;
 import com.example.demo.service.CategoryService;
 import com.example.demo.util.Message;
@@ -36,6 +37,11 @@ public class CataegoryController {
     @PutMapping("/category/{id}")
     ResponseEntity<Message<Category>> updateCategory(@PathVariable Long id, @RequestBody Category category){
         return ResponseEntity.ok(this.categoryService.updateCategory(id, category));
+    }
+
+    @GetMapping("/category/product-type/{id}")
+    ResponseEntity<Message<List<Category>>> getCategoriesByProductTypeId(@PathVariable Long id){
+        return ResponseEntity.ok(this.categoryService.getCategoriesByProductTypeId(id));
     }
 
 }

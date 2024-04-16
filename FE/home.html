@@ -316,6 +316,25 @@
         </div>
     </section>
 
+    <aside id="sidebarCart" class="sidebar-cart">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button class="btn-close" onclick="toggleSidebarCart()">&times;</button>
+        </div>
+        <div id="cartItems" class="cart-items">
+            <!-- Cart items will be dynamically loaded here -->
+        </div>
+        <div class="cart-footer">
+            <button class="btn btn-primary" onclick="clearCart()">Clear Cart</button>
+        </div>
+      </aside>
+      
+      <!-- Button to open the sidebar cart -->
+      <div id="openCartBtn" class="open-cart-btn" onclick="toggleSidebarCart()">
+          <i class="fas fa-shopping-cart"></i>
+          <span id="cartCount" class="cart-count"></span>
+      </div>
+
     <!-- Blog Section Exit  -->
 
     <!-- Footer section --> 
@@ -378,6 +397,7 @@
     <!-- Custom Js Link -->
     <script src="js/main.js"></script>
     <script src="js/navbar.js"></script>
+    <script src="js/cart.js"></script>
     
 </body>
 

@@ -5,7 +5,6 @@ import lombok.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
@@ -21,5 +20,18 @@ public class ProductDto {
     private String breed;
     private String color;
     private Boolean isActive;
-    private Category category;
+    private String productType;
+
+    public ProductDto(Long id, String name, Double price, String imageUrl, String description, String age, String breed, String color, Boolean isActive, String productType) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+        this.imageUrl = imageUrl;
+        this.description = description;
+        this.age = age;
+        this.breed = breed;
+        this.color = color;
+        this.isActive = isActive;
+        this.productType = productType;
+    }
 }

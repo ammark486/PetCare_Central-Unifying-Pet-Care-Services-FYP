@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface ProductTypeRepo extends JpaRepository<ProductType, Long> {
     List<ProductType> findAllByTypeAndIsActive(String type, Boolean isActive);
+    List<ProductType> findAllByIsActive(Boolean isActive);
 }

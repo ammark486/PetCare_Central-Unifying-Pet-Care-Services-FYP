@@ -40,4 +40,8 @@ public class UserService {
                 throw new RecordAlreadyExistException("Username already exist");
             }
     }
+
+    public User findByUserName(String userName){
+        return this.userRepository.findByUserName(userName);
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.demo.security.filter;
 
+import com.example.demo.exception.UserUnauthorizeException;
 import com.example.demo.security.util.JwtUtil;
 import com.example.demo.service.MyUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,20 +52,14 @@ public class JwtRequestFilter extends OncePerRequestFilter {
                         SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
                     } else {
                         // Token is expired, return a 401 status response
-                        response.setStatus(HttpStatus.UNAUTHORIZED.value());
-                        response.setHeader("Access-Control-Allow-Origin", "*");
-                        return;
+                        throw new UserUnauthorizeException("You are not authorize");
                     }
                 }
             }
 
             filterChain.doFilter(request, response);
         } catch (Exception e) {
-            e.printStackTrace();
-            // Handle other exceptions as needed
-            response.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value()); // Example: Internal Server Error
-            response.setHeader("Access-Control-Allow-Origin", "*");
-            return;
+         throw new UserUnauthorizeException("You are not authorize");
         }
 
     }

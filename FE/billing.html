@@ -101,7 +101,7 @@
                 </div>
 
                 <div class="col-lg-6">
-                    <form class="bill-form" onsubmit="validateForm(); return false;">
+                    <form class="bill-form" onsubmit="orderForm(); return false;">
                         
                         <section id="bil-form" class="about_wrapper wrapper text-center">
                             <div class="container">
@@ -111,22 +111,29 @@
                                             <h5 class="text-center" style="color:#0040ca;">Checkout: Fill the given form</h5>
                                             <form>
                                                 <div class="mb-3">
-                                                    <label for="name" class="form-label">Name</label>
+                                                    <label for="name" class="form-label">Name *</label>
                                                     <input type="text" class="form-control" id="name" placeholder="E.g. Aaliya Raza" required>
                                                 </div>
                                                 <div class="mb-3">
-                                                    <label for="contactNumber" class="form-label">Contact No.</label>
+                                                    <label for="contactNumber" class="form-label">Contact No. *</label>
                                                     <input type="tel" class="form-control" id="contactNumber" placeholder="E.g. 0335-003937-2" required>
                                                 </div>
                                                
                                             
                                                 <div class="mb-3">
-                                                    <label for="address" class="form-label">Address</label>
+                                                    <label for="address" class="form-label">Address *</label>
                                                     <input type="text" class="form-control" id="address" placeholder="E.g. House number/Appartmemt number" required>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="city" class="form-label">City *</label>                              
+                                                    <div class="mb-3">                         
+                                                        <select name="city" id="city" class="form-control" placeholder="Select city" required></select>
+                                                    </div>
                                                 </div>
                                                
                                                 <div class="mb-3">
-                                                    <label for="zipcode" class="form-label">Zipcode</label>
+                                                    <label for="zipcode" class="form-label">Zipcode *</label>
                                                     <input type="text" class="form-control" id="zipcode" placeholder="E.g. 12345" required>
                                                 </div>
                                                 

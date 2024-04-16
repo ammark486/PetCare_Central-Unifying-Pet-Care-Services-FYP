@@ -45,4 +45,13 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(message.getStatus()).body(message);
     }
 
+    @ExceptionHandler(UserUnauthorizeException.class)
+    protected ResponseEntity<Message<Object>> unauthorizeUserException(UserUnauthorizeException ex){
+        Message<Object> message = new Message<>().builder()
+                .message(ex.getMessage())
+                .status(HttpStatus.UNAUTHORIZED.value())
+                .code(HttpStatus.UNAUTHORIZED.name()).build();
+        return ResponseEntity.status(message.getStatus()).body(message);
+    }
+
 }

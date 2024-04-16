@@ -1,101 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Pet Care Central : Unifying Pet Care Services</title>
 
-        <!-- FAVICON -->
-        <link rel="icon" type="image/png" href="images/favicon.png">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>Pet Care Central : Unifying Pet Care Services</title>
+
+  <!-- FAVICON -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
 
 
-    <!-- Montserrat Font -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Montserrat Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
 
-    <!-- Material Icons -->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/admin.css">
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/admin.css">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 
-  </head>
-  <body>
-    <div class="grid-container">
 
-      <!-- Header -->
-      <header class="header">
-        <div class="menu-icon" onclick="openSidebar()">
-          <span class="material-icons-outlined">menu</span>
+</head>
+
+<body>
+  <div class="grid-container">
+
+    <!-- Header -->
+    <header class="header">
+      <div class="menu-icon" onclick="openSidebar()">
+        <span class="material-icons-outlined">menu</span>
+      </div>
+      <div class="header-left">
+        <span class="material-icons-outlined">search</span>
+      </div>
+      <div class="header-right">
+        <span class="material-icons-outlined">account_circle</span>
+      </div>
+    </header>
+    <!-- End Header -->
+
+    <!-- Sidebar -->
+    <aside id="sidebar">
+      <div class="sidebar-title">
+        <div class="sidebar-brand">
+          <span class="material-icons-outlined">pets</span> Pet Care Central
         </div>
-        <div class="header-left">
-          <span class="material-icons-outlined">search</span>
-        </div>
-        <div class="header-right">
-          <span class="material-icons-outlined">account_circle</span>
-        </div>
-      </header>
-      <!-- End Header -->
+        <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
+      </div>
 
-      <!-- Sidebar -->
-      <aside id="sidebar">
-        <div class="sidebar-title">
-          <div class="sidebar-brand">
-            <span class="material-icons-outlined">pets</span> Pet Care Central
-          </div>
-          <span class="material-icons-outlined" onclick="closeSidebar()">close</span>
-        </div>
+      <ul class="sidebar-list">
+        <li class="sidebar-list-item" data-page="admindashboard.html">
+          <a href="#">
+            <span class="material-icons-outlined">dashboard</span> Dashboard
+          </a>
+        </li>
+        <li class="sidebar-list-item" data-page="permission.html">
+          <a href="#">
+            <span class="material-icons-outlined">shield</span> Permission
+          </a>
+        </li>
+        <li class="sidebar-list-item" data-page="management.html">
+          <a href="#">
+            <span class="material-icons-outlined">settings</span> Management
+            <span class="material-icons-outlined">keyboard_arrow_down</span> <!-- Dropdown arrow icon -->
+          </a>
+          <!-- Dropdown menu -->
+          <ul class="dropdown-menu">
+            <li><a href="#">Add</a></li>
+            <li><a href="#">Edit</a></li>
+            <li><a href="#">View</a></li>
+          </ul>
+        </li>
 
-        <ul class="sidebar-list">
-            <li class="sidebar-list-item" data-page="admindashboard.html">
-                <a href="#">
-                    <span class="material-icons-outlined">dashboard</span> Dashboard
-                </a>
-            </li>
-            <li class="sidebar-list-item" data-page="permission.html">
-                <a href="#">
-                    <span class="material-icons-outlined">shield</span> Permission
-                </a>
-            </li>
-            <li class="sidebar-list-item" data-page="management.html">
-              <a href="#">
-                  <span class="material-icons-outlined">settings</span> Management
-                  <span class="material-icons-outlined">keyboard_arrow_down</span> <!-- Dropdown arrow icon -->
-              </a>
-              <!-- Dropdown menu -->
-              <ul class="dropdown-menu">
-                  <li><a href="#">Add</a></li>
-                  <li><a href="#">Edit</a></li>
-                  <li><a href="#">View</a></li>
-              </ul>
-          </li>
-          
-        </ul>
-        
-      </aside>
-      <!-- End Sidebar -->
+      </ul>
 
-     <!-- Main -->
-     <main class="main-container">
+    </aside>
+    <!-- End Sidebar -->
+
+    <!-- Main -->
+    <main class="main-container">
       <div class="form-container">
         <div class="form-title">
           <h2>Product Management</h2>
         </div>
         <form id="productForm">
           <div class="form-group">
-            <label for="productType">Product Type:</label>
-            <select class="form-control" id="productType" onchange="updateFormFields()">
-              <option value="petfood">Pet Food</option>
-              <option value="petaccessories">Pet Accessories</option>
-              <option value="petgroomingsupplies">Pet Grooming Supplies</option>
-              <option value="cat">Cat</option>
-              <option value="dog">Dog</option>
-            </select>
+            <div class="row">
+              <div class="col-sm-9">
+                  <label for="productType">Product Name:</label>
+                  <select class="form-control" id="all-products" onchange="getCategories()">
+                  </select>
+              </div>
+              <div class="col-sm-3">
+                  <button type="button" class="btn btn-primary btn-block add-category" onclick="openModal()">Add</button>
+              </div>
+          </div>
+
           </div>
           <div class="form-group">
-            <label for="category">Category:</label>
-            <select class="form-control" id="category" name="category">
-              <!-- Categories will be dynamically populated based on the selected product type -->
-            </select>
+            <div class="row">
+              <div class="col-sm-9">
+                <label for="category">Category:</label>
+                <select class="form-control" id="category-by-product" name="category">
+                </select>
+              </div>
+              <div class="col-sm-3">
+                <button type="button" class="btn btn-primary btn-block add-category" onclick="openCategoryModal()">Add</button>
+              </div>
+            </div>
           </div>
           <div class="form-group">
             <label for="productName">Name:</label>
@@ -127,14 +142,100 @@
         </form>
       </div>
     </main>
-  <!-- End Main -->
+    <!-- End Main -->
 
+
+    <!-- Add product type modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">Add Product Type</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <div>
+                    <label for="productName">Name:</label>
+                    <input type="text" class="form-control" id="productTypeName" name="productName">
+                  </div>
+              
+                  <!-- Modal -->
+      
+                  <br>
+                  <div>
+                    <label for="productName">Type:</label>
+                    <select class="form-control" id="productType">
+                      <option value="animal">Animal</option>
+                      <option value="food">Food</option>
+                      <option value="accessories">Accessories</option>
+                    </select>
+                  </div>
+      
+                </div>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" onclick="addProductType()">Add</button>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+      <!-- Add category modal -->
+      <div class="modal fade" id="categoryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Add Category</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                  <div class="form-group">
+                    <div>
+                      <label for="productName">Name:</label>
+                      <input type="text" class="form-control" id="category-name" name="category name">
+                    </div>
+        
+                  </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" onclick="addCategory()">Add</button>
+                </div>
+            </div>
+        </div>
     </div>
-  
-    <!-- Custom JS -->
-  
-    <script src="js/dashboard.js"></script>
-    <script src="js/management.js"></script>
-    <script src="js/adminsidebar.js"></script>
-  </body>
+
+
+  </div>
+
+  <!-- Custom JS -->
+
+  <script src="js/dashboard.js"></script>
+  <script src="js/management.js"></script>
+  <script src="js/adminsidebar.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- Custom JavaScript -->
+    <script>
+        function openModal() {
+            $('#exampleModal').modal('show');
+        }
+
+        function openCategoryModal() {
+            $('#categoryModal').modal('show');
+        }
+
+    </script>
+
+</body>
+
 </html>

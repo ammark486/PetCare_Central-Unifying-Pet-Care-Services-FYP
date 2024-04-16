@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.constants.StatusCode;
+import com.example.demo.dto.CategoryDto;
 import com.example.demo.exception.RecordNotFoundException;
 import com.example.demo.exception.RecordNotSavedException;
 import com.example.demo.model.Category;
@@ -86,5 +87,19 @@ public class CategoryService {
 
     private Boolean checkDuplicate(String categoryName){
        return Optional.ofNullable(this.categoryRepo.findByName(categoryName)).isPresent() ? true : false;
+    }
+
+    public Message<List<Category>> getCategoriesByProductTypeId(Long productTypeId) {
+        List<Category> categories = this.categoryRepo.findCategoriesByProductTypeId(productTypeId);
+        if(!categories.isEmpty()){
+            Message<List<Category>> message = new Message();
+            message.setCode(StatusCode.OK.name());
+            message.setStatus(StatusCode.OK.value());
+            message.setData(categories);
+            message.setMessage("fetch data successfully");
+            return message;
+        }else{
+            throw new RecordNotFoundException("data not found");
+        }
     }
 }

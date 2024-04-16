@@ -503,6 +503,7 @@ header h1 {
 
 .card-img-top {
     max-width: 100%;
+    max-height: 220px;
     height: auto;
 }
 
@@ -974,6 +975,19 @@ header h1 {
 #consultationhours table td, #consultationhours table th {
     padding: 15px;
     text-align: left;
+}
+
+.pagination-alignment {
+    justify-content: end!important;
+    margin-right: 2%;
+}
+
+.product-details {
+    min-width: 50% !important;
+}
+
+.add-category {
+    margin-top: 32% !important;
 }
 
 

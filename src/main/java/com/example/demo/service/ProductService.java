@@ -13,9 +13,10 @@ import com.example.demo.util.Message;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-
+import org.springframework.data.domain.Pageable;
 import java.io.File;
 import java.util.List;
 import java.util.Optional;
@@ -91,8 +92,14 @@ public class ProductService {
         }
     }
 
-    public Message<List<Product>> getProductByCategoryId(Long id) {
-        return null;
+    public Message<Page<ProductDto>> getProductByCategoryId(Long id, Boolean isActive, Pageable pageable) {
+        Page<ProductDto> products = this.productRepo.findByCategoryId(id, isActive, pageable);
+        Message<Page<ProductDto>> message = new Message<>();
+        message.setCode(StatusCode.OK.name());
+        message.setStatus(StatusCode.OK.value());
+        message.setMessage("product update successfully");
+        message.setData(products);
+        return message;
     }
 
     public Integer sumOfProducts(List<Long> productIds){

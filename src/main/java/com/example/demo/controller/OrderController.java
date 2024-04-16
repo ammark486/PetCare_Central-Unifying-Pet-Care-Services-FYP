@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
+
 @RestController
 @RequestMapping("/api")
 public class OrderController {
@@ -20,7 +22,7 @@ public class OrderController {
     }
 
     @PostMapping("/order")
-    ResponseEntity<Message<MasterOrderDto>> saveOrder(@RequestBody MasterOrderDto masterOrderDto){
-        return ResponseEntity.ok(this.masterOrderService.saveOrder(masterOrderDto));
+    ResponseEntity<Message<MasterOrderDto>> saveOrder(@RequestBody MasterOrderDto masterOrderDto, Principal principal){
+        return ResponseEntity.ok(this.masterOrderService.saveOrder(masterOrderDto, principal));
     }
 }
