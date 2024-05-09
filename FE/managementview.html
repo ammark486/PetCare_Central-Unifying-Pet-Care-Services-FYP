@@ -78,23 +78,20 @@
       <!-- Dropdown menu for product types -->
       <div class="form-group">
         <label for="productType">Product Type:</label>
-        <select id="productType" class="form-control">
-          <option value="">Select Product Type</option>
-          <option value="petfood">Pet Food</option>
-          <option value="petaccessories">Pet Accessories</option>
-          <option value="petgroomingsupplies">Pet Grooming Supplies</option>
-          <option value="cat">Cat</option>
-          <option value="dog">Dog</option>
+        <select id="productType" class="form-control" onchange="getCategories()">
+
         </select>
       </div>
   
       <div class="form-group">
         <label for="category">Category:</label>
-        <select id="category" class="form-control">
-          <option value="">Select Category</option>
+        <select id="category-by-product" class="form-control" onchange="getProductsByCategory()">
         </select>
       </div>
-  
+      
+    <div class="display-flex justify-content-end">
+        <button type="button" class="btn btn-primary" onClick="routeToAddScreen()">Add Product</button>
+    </div>
       <div class="table-box">
         <table id="productTable" class="table">
           <thead>

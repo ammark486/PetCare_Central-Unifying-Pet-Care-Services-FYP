@@ -36,8 +36,8 @@ public class ProductController {
     }
 
     @GetMapping("/product/{id}")
-    ResponseEntity<Message<Product>> getProductById(@PathVariable Long id, @RequestParam Boolean isActive){
-        return ResponseEntity.ok(this.productService.getProductById(id, isActive));
+    ResponseEntity<Message<ProductDto>> getProductById(@PathVariable Long id){
+        return ResponseEntity.ok(this.productService.getProductById(id));
     }
 
     @PutMapping("/product")

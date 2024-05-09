@@ -66,14 +66,14 @@ public class ProductService {
         }
     }
 
-    public Message<Product> getProductById(Long id, Boolean isActive) {
-        Product product = this.productRepo.findByIsActiveAndId(isActive, id);
-        if(product!=null){
-            Message<Product> message = new Message<>();
+    public Message<ProductDto> getProductById(Long id) {
+        ProductDto productDto = this.productRepo.findByProductId(id);
+        if(productDto!=null){
+            Message<ProductDto> message = new Message<>();
             message.setCode(StatusCode.OK.name());
             message.setStatus(StatusCode.OK.value());
             message.setMessage("fetch product successfully");
-            message.setData(product);
+            message.setData(productDto);
             return message;
         }else{
             throw new RecordNotFoundException("product not found");

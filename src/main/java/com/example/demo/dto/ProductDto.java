@@ -21,8 +21,10 @@ public class ProductDto {
     private String color;
     private Boolean isActive;
     private String productType;
+    private Long categoryId;
+    private Long productTypeId;
 
-    public ProductDto(Long id, String name, Double price, String imageUrl, String description, String age, String breed, String color, Boolean isActive, String productType) {
+    public ProductDto(Long id, String name, Double price, String imageUrl, String description, String age, String breed, String color, Boolean isActive, String productType, Long categoryId, Long productTypeId) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -33,5 +35,7 @@ public class ProductDto {
         this.color = color;
         this.isActive = isActive;
         this.productType = productType;
+        this.categoryId = categoryId;
+        this.productTypeId = productTypeId;
     }
 }
