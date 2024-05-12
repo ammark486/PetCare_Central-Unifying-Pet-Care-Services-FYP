@@ -24,10 +24,8 @@ public class ProductController {
     }
 
     @PostMapping("/product")
-    public ResponseEntity<Message<ProductDto>> save(
-            @RequestPart("productDto") Product productDto,
-            @RequestPart("file") MultipartFile file) {
-        return ResponseEntity.ok(this.productService.save(productDto, file));
+    public ResponseEntity<Message<ProductDto>> save(@RequestBody Product productDto) {
+        return ResponseEntity.ok(this.productService.save(productDto));
     }
 
     @GetMapping("/product")
@@ -50,5 +48,11 @@ public class ProductController {
             @RequestParam Long id, @RequestParam Boolean isActive,
             @RequestParam Integer page, @RequestParam Integer size){
         return ResponseEntity.ok(this.productService.getProductByCategoryId(id, isActive, PageRequest.of(page, size, Sort.by("id").descending())));
+    }
+
+    @PutMapping("/product/{id}")
+    ResponseEntity<Void> deleteProduct(@PathVariable Long id){
+        this.productService.deleteProduct(id);
+        return ResponseEntity.ok().build();
     }
 }

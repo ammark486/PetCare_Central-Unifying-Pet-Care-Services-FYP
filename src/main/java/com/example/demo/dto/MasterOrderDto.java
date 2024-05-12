@@ -24,6 +24,7 @@ public class MasterOrderDto {
     private String notes;
     private LocalDate orderDate;
     private Integer totalAmount;
+    private Boolean status;
     private User user;
     Map<Long, Integer> productIds = new HashMap<>();
 }

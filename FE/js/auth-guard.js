@@ -1,5 +1,4 @@
 function fetchToken() {
-    debugger;
     const storedJwt = localStorage.getItem('jwt');
     
     if(!storedJwt)

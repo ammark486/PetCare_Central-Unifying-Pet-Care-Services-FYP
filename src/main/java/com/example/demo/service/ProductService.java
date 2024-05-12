@@ -35,12 +35,9 @@ public class ProductService {
         this.productRepo = productRepo;
         this.fileService = fileService;
     }
-        public Message<ProductDto> save(Product productDto, MultipartFile file) {
+        public Message<ProductDto> save(Product productDto) {
             try {
-            String imagePath = this.fileService.uploadFile(path, file);
-            productDto.setImageUrl(Url.IMAGE_URL + imagePath);
             Product saveProduct = this.productRepo.save(productDto);
-//            Product saveProduct = this.productRepo.save(this.modelMapper.map(productDto, Product.class));
             Message<ProductDto> message = new Message<>();
             message.setCode(StatusCode.OK.name());
             message.setStatus(StatusCode.OK.value());
@@ -80,6 +77,15 @@ public class ProductService {
         }
     }
 
+    public ProductDto findById(Long id) {
+        ProductDto productDto = this.productRepo.findByProductId(id);
+        if(productDto!=null){
+            return productDto;
+        }else{
+            throw new RecordNotFoundException("product not found");
+        }
+    }
+
     public Message<Product> updateProduct(Product product) {
         if(productRepo.findById(product.getId()).isPresent()){
             Message<Product> message = new Message<>();
@@ -105,5 +111,11 @@ public class ProductService {
 
     public Integer sumOfProducts(List<Long> productIds){
         return this.productRepo.sumOfProducts(productIds);
+    }
+
+    public void deleteProduct(Long id) {
+        Product product = this.productRepo.findById(id).get();
+        product.setIsActive(false);
+        this.productRepo.save(product);
     }
 }

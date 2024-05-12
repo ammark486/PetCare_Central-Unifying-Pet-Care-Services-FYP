@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import com.example.demo.dto.UploadResponseDto;
 import com.example.demo.service.FileService;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,9 +26,8 @@ public class FileController {
     String path;
 
     @PostMapping("/file")
-    ResponseEntity<String> uploadImage(@RequestParam MultipartFile file) throws IOException {
-        String fileName = this.fileService.uploadFile(path, file);
-        return ResponseEntity.ok(fileName);
+    ResponseEntity<UploadResponseDto> uploadImage(@RequestParam MultipartFile file) throws IOException {
+        return ResponseEntity.ok(this.fileService.uploadFile(path, file));
     }
 
     @GetMapping("/file/{imageName}")

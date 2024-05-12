@@ -34,6 +34,7 @@ public class MasterOrder {
     private String notes;
     private LocalDate orderDate;
     private Integer totalAmount;
+    private Boolean status;
     @ManyToOne
     private User user;
 }

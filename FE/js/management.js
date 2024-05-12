@@ -1,6 +1,7 @@
 let allproductTypes;
 let product;
 let productId;
+let imageUrl;
 showProductTypes();
 checkProductUpdate();
 
@@ -41,6 +42,7 @@ async function getProductById(productId) {
     window.location.href = "customersignin.html";
   } else if (response.status == 200) {
     product = response.data;
+    imageUrl = product.imageUrl;
     updateProductTypeDD(product.productTypeId, product.categoryId);
     updateProductForm();
   } else {
@@ -49,11 +51,9 @@ async function getProductById(productId) {
 }
 
 function updateProductForm(){
-  debugger;
   document.getElementById('productName').value = product.name;
   document.getElementById('productPrice').value = product.price;
   document.getElementById('age').value = product.age;
-  document.getElementById('breed').value = product.breed;
   document.getElementById('color').value = product.color;
   document.getElementById('productDescription').value = product.description;
   document.getElementById('productIsActive').value = product.isActive;
@@ -241,35 +241,29 @@ async function addProductType() {
 }
 
 async function addProduct() {
-  const formData = new FormData();
   const productDto = {
+    id: productId,
     name: document.getElementById("productName").value,
     price: document.getElementById("productPrice").value,
     description: document.getElementById("productDescription").value,
     age: document.getElementById("age").value,
     color: document.getElementById("color").value,
+    imageUrl: imageUrl,
     isActive: document.getElementById("productIsActive").value,
     category: {
       id: Number(document.getElementById("category-by-product").value),
     },
   };
   console.log(productDto);
-  formData.append(
-    "productDto",
-    new Blob([JSON.stringify(productDto)], { type: "application/json" })
-  );
-
-  const fileInput = document.getElementById("productImage");
-  const file = fileInput.files[0];
-  formData.append("file", file);
 
   const token = localStorage.getItem("jwt");
   let response = await fetch("http://localhost:8080/api/product", {
     method: "POST",
     headers: {
+      "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-    body: formData,
+    body: JSON.stringify(productDto),
   });
 
   response = await response.json();
@@ -286,4 +280,18 @@ async function addProduct() {
   } else {
     console.error("Error:", response.message);
   }
+}
+
+async function handleImageUpload() {
+  console.log("uploaded");
+  const formData = new FormData();
+  const fileInput = document.getElementById("productImage");
+  const file = fileInput.files[0];
+  formData.append("file", file);
+  let response = await fetch("http://localhost:8080/api/file", {
+    method: "POST",
+    body: formData,
+  });
+  response = await response.json();
+  imageUrl = response.fileName;
 }

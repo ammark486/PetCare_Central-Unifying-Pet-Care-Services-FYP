@@ -37,7 +37,7 @@ public class UserService {
                 message.setData(this.modelMapper.map(saveUser, UserDto.class));
                 return message;
             }else {
-                throw new RecordAlreadyExistException("Username already exist");
+                throw new RecordAlreadyExistException("Email already exist");
             }
     }
 

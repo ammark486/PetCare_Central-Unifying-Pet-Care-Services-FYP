@@ -46,4 +46,8 @@ public class ProductTypeService {
         }
         throw new RecordNotFoundException("Product types not found");
     }
+
+    public ProductType findById(Long id){
+        return this.productTypeRepo.findById(id).get();
+    }
 }
