@@ -206,6 +206,7 @@ async function orderForm() {
     } else if (response.status == 200) {
       const responseData = await response.json();
       alert("Order successfully submiited");
+      clearCart();
       window.location.href = 'home.html';
     } else {
       console.error("Error:", response.statusText);

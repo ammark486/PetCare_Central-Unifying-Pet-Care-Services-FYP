@@ -39,7 +39,7 @@ async function getFoodProductTypes() {
   async function getAccessoriesProductTypes() {
     try {
         
-        const url = new URL("http://localhost:8080/api/product-type?isActive=true&type=accesories");
+        const url = new URL("http://localhost:8080/api/product-type?isActive=true&type=accessories");
   
         const response = await fetch(url, {
             method: "GET",

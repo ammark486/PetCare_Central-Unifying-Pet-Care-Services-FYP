@@ -1,14 +1,20 @@
 package com.example.demo.service;
 
+import com.example.demo.constants.StatusCode;
 import com.example.demo.dto.MasterOrderDto;
+import com.example.demo.dto.ProductDto;
+import com.example.demo.exception.RecordNotFoundException;
 import com.example.demo.exception.RecordNotSavedException;
 import com.example.demo.model.MasterOrder;
 import com.example.demo.model.OrderProduct;
 import com.example.demo.model.Product;
+import com.example.demo.model.ProductType;
 import com.example.demo.repository.MasterOrderRepo;
 import com.example.demo.util.Message;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -26,14 +32,16 @@ public class MasterOrderService {
     private final OrderService orderService;
     private final ProductService productService;
     private final UserService userService;
+    private final ProductTypeService productTypeService;
     @Autowired
     ModelMapper modelMapper;
 
-    public MasterOrderService(MasterOrderRepo masterOrderRepo, OrderService orderService, ProductService productService, UserService userService) {
+    public MasterOrderService(MasterOrderRepo masterOrderRepo, OrderService orderService, ProductService productService, UserService userService, ProductTypeService productTypeService) {
         this.masterOrderRepo = masterOrderRepo;
         this.orderService = orderService;
         this.productService = productService;
         this.userService = userService;
+        this.productTypeService = productTypeService;
     }
 
     @Transactional
@@ -41,6 +49,7 @@ public class MasterOrderService {
        try {
            masterOrderDto.setUser(this.userService.findByUserName(principal.getName()));
            masterOrderDto.setOrderDate(LocalDate.now());
+           masterOrderDto.setStatus(false);
            List<OrderProduct> orderProducts = new ArrayList<>();
            List<Long> productIds = masterOrderDto.getProductIds().keySet().stream().collect(Collectors.toList());
            Integer totalAmount = 0;
@@ -60,11 +69,50 @@ public class MasterOrderService {
 
            masterOrder = this.masterOrderRepo.save(masterOrder);
            this.orderService.saveOrderProducts(orderProducts);
+           this.activeProduct(orderProducts);
            return ResponseService.responseData("Order save successfully", this.modelMapper.map(masterOrder, MasterOrderDto.class));
        }catch(Exception e){
            throw new RecordNotSavedException("Order couldn't save");
        }
     }
 
+    public void activeProduct(List<OrderProduct> orderProducts){
+        for(OrderProduct orderProduct: orderProducts){
+            ProductDto productDto = this.productService.findById(orderProduct.getProduct().getId());
+            ProductType productType = this.productTypeService.findById(productDto.getProductTypeId());
+            if(productType.getType().equalsIgnoreCase("animal")){
+                productDto.setIsActive(false);
+                this.productService.save(this.modelMapper.map(productDto, Product.class));
+            }
+        }
+    }
 
+
+    public Message<Page<MasterOrder>> getMasterOrders(Boolean status, Pageable pageable) {
+        Message<Page<MasterOrder>> message = new Message<>();
+        Page<MasterOrder> masterOrders = this.masterOrderRepo.findByStatus(status, pageable);
+        if(masterOrders.getContent().size() > 0){
+            masterOrders.getContent().forEach(masterOrder -> masterOrder.setUser(null));
+            message.setCode(StatusCode.OK.name());
+            message.setStatus(StatusCode.OK.value());
+            message.setMessage("fetch orders successfully");
+            message.setData(masterOrders);
+            return message;
+        }
+
+        throw new RecordNotFoundException("Orders not found");
+    }
+
+    public Message<MasterOrder> completeOrder(Long id) {
+        Message<MasterOrder> message = new Message<>();
+        MasterOrder masterOrder = this.masterOrderRepo.findById(id).get();
+        masterOrder.setStatus(true);
+        MasterOrder updatedMasterOrder = this.masterOrderRepo.save(masterOrder);
+        updatedMasterOrder.setUser(null);
+        message.setCode(StatusCode.OK.name());
+        message.setStatus(StatusCode.OK.value());
+        message.setMessage("order completed successfully");
+        message.setData(updatedMasterOrder);
+        return message;
+    }
 }

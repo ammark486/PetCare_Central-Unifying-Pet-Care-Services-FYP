@@ -33,4 +33,9 @@ public class ProductTypeController {
         return ResponseEntity.ok(this.productTypeService.getAllProductTypes(isActive));
     }
 
+    @GetMapping("/product-type/{id}")
+    ResponseEntity<ProductType> getProductTypeById(@PathVariable Long id){
+        return ResponseEntity.ok(this.productTypeService.findById(id));
+    }
+
 }

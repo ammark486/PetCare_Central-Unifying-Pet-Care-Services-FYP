@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import com.example.demo.dto.UploadResponseDto;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -11,7 +13,10 @@ import java.util.UUID;
 
 @Service
 public class FileService {
-    public String uploadFile(String path, MultipartFile file) throws IOException {
+
+    @Value("${server.port}")
+    String serverPort;
+    public UploadResponseDto uploadFile(String path, MultipartFile file) throws IOException {
         String name = file.getOriginalFilename();
         String randomId = UUID.randomUUID().toString();
         String completePath = randomId.concat(name.substring(name.lastIndexOf(".")));
@@ -22,7 +27,9 @@ public class FileService {
         }
 
         Files.copy(file.getInputStream(), Paths.get(filePath));
-        return completePath;
+        UploadResponseDto uploadResponseDto = UploadResponseDto.builder()
+                .fileName("http://localhost:"+serverPort + "/api/file/"+ completePath).build();
+        return uploadResponseDto;
     }
 
     public InputStream getFile(String path, String fileName) throws FileNotFoundException {

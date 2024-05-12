@@ -9,7 +9,6 @@ import java.util.List;
 import java.util.Map;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
@@ -17,7 +16,19 @@ import java.util.Map;
 @Builder
 public class OrderDto {
     private Long id;
-    private MasterOrder masterOrder;
-    private Product product;
     private Integer count;
+    private String name;
+    private Double price;
+    private String imageUrl;
+    private String category;
+    private String productType;
+    public OrderDto(Long id, Integer count, String name, Double price, String imageUrl, String category, String productType) {
+        this.id = id;
+        this.count = count;
+        this.name = name;
+        this.price = price;
+        this.imageUrl = imageUrl;
+        this.category = category;
+        this.productType = productType;
+    }
 }

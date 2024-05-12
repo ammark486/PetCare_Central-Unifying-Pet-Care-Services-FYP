@@ -22,7 +22,6 @@ public class Product {
     private String imageUrl;
     private String description;
     private String age;
-    private String breed;
     private String color;
     private Boolean isActive;
     @ManyToOne

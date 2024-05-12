@@ -508,3 +508,18 @@ th {
       display: none;
     }
   }
+
+  .product-image-size {
+    width: 25%;
+    height: 45px;
+    border-radius: 50%;
+  }
+
+  .display-flex {
+    display: flex;
+  }
+
+  .justify-content-end {
+    justify-content: end;
+  }
+

@@ -11,6 +11,7 @@ function getQueryParam(name) {
 
 async function getProductTypeCategories(){
     productTypeId = getQueryParam('productTypeId');
+    getProductTypeById();
     const url = new URL("http://localhost:8080/api/category/product-type/" + productTypeId);
 
     const response = await fetch(url, {
@@ -57,7 +58,7 @@ async function selectCategory(categoryId){
             card.className = 'card';
         
             const img = document.createElement('img');
-            img.src = 'http://'+ product.imageUrl;
+            img.src = product.imageUrl;
             img.className = 'card-img-top';
             img.alt = product.name;
         
@@ -107,6 +108,29 @@ async function selectCategory(categoryId){
      alert('No products found');
     }
 
+}
+
+async function getProductTypeById(){
+    let response = await fetch(`http://localhost:8080/api/product-type/${productTypeId}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+
+  response = await response.json();
+  var data = ``;
+  if (response.type.toLowerCase() === "food") {
+    data += `<h2 style="color: white; margin-top: 20px;">Elevate your pet's happiness with Petcare Central's quality food specially designed to keep them healthy and full of life.</h2>`;
+  } else if (response.type.toLowerCase() === "accessories") {
+    data += `<h2 style="color: white; margin-top: 20px;">Elevate your pet's style and comfort with our curated collection of accessories at Petcare Central.</h2>`;
+  } else if (response.type.toLowerCase() === "grooming") {
+    data += `<h2 style="color: white; margin-top: 20px;">Make grooming fun with our special tools at Petcare Central. Keep your pet clean and happy with our gentle products!</h2>`;
+  } else {
+    data += `<h2 style="color: white; margin-top: 20px;">Adopt a Pet Now</h2>`;
+  }
+  
+  document.getElementById('type-text').innerHTML = data;
 }
 
 

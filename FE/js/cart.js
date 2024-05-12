@@ -60,7 +60,7 @@ function updateCart() {
       "cart-item d-flex justify-content-between align-items-center mb-3";
     cartItem.innerHTML = `
         <div class="d-flex align-items-center product-details">
-          <img src="${'http://' + product.imageUrl}" alt="${product.name}" class="cart-item-image mr-3">
+          <img src="${product.imageUrl}" alt="${product.name}" class="cart-item-image mr-3">
           <div class="cart-item-detail">
               <h5 class="cart-item-name">${product.name}</h5>
               <p class="cart-item-price">${product.price}</p>

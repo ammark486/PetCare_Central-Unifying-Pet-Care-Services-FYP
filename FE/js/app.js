@@ -53,32 +53,46 @@ async function signUp() {
   let email = document.getElementById('signup-email').value;
   let password = document.getElementById('signup-password').value;
   let confirmPassword = document.getElementById('confirm-password').value;
-  if(password == confirmPassword){
-    try {
 
-      const object = {
-        userName: email,
-        password : password
-      }
-  
-    const response = await fetch("http://localhost:8080/api/sign-up", {
+  // Regular expression for email format validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  // Validate if email, password, and confirm password are filled
+  if (!email || !password || !confirmPassword) {
+    alert("Please fill in all fields.");
+    return;
+  }
+
+  // Validate email format
+  if (!emailRegex.test(email)) {
+    alert("Please enter a valid email address.");
+    return;
+  }
+
+  // Validate if password and confirm password match
+  if (password !== confirmPassword) {
+    alert("Password and confirm password do not match.");
+    return;
+  }
+    const object = {
+      userName: email,
+      password: password
+    };
+
+    let response = await fetch("http://localhost:8080/api/sign-up", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(object),
     });
-  
-    const result = await response.json();
-    if(result.status == 200){
-      alert("signup successfully");
-      window.location.href = 'customersignin.html?';
-    }
-  } catch (error) {
-    alert(error);
-  }
-  }else {
-    alert("password not matched");
-  }
 
+    response = await response.json();
+    if (response.status === 200) {
+      alert("Signup successful.");
+      window.location.href = 'customersignin.html?';
+    }else{
+      alert(response.message);
+    }
 }
+
