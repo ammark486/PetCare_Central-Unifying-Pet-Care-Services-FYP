@@ -17,10 +17,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.swing.plaf.PanelUI;
 import javax.transaction.Transactional;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.security.Principal;
+import java.security.PublicKey;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -114,5 +119,32 @@ public class MasterOrderService {
         message.setMessage("order completed successfully");
         message.setData(updatedMasterOrder);
         return message;
+    }
+
+    public Long getTotalSales(){
+        return this.masterOrderRepo.getTotalSales();
+    }
+
+    public Long getTotalSalesByYear(String year){
+        return this.masterOrderRepo.getTotalSalesByYear(year);
+    }
+
+    public Map<Long, Long> getTotalAmountByMonthAndYear(String year) {
+        Map<Long, Long> resultMap = new HashMap<>();
+        for (int i = 1; i <= 12; i++) {
+            resultMap.put((long) i, 0L);
+        }
+
+        // Retrieve the total amounts from the repository
+        List<Object[]> resultList = this.masterOrderRepo.getTotalAmountByMonthAndYear(year);
+        for (Object[] row : resultList) {
+            BigDecimal totalAmount = (BigDecimal) row[0];
+            BigInteger month = (BigInteger) row[1];
+            long totalAmountLong = totalAmount.longValue();
+            long monthLong = month.longValue();
+            resultMap.put(monthLong, totalAmountLong);
+        }
+
+        return resultMap;
     }
 }

@@ -14,6 +14,10 @@
 
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
+        <!-- Montserrat Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!-- Custom CSS -->
     <link rel="stylesheet" href="css/admin.css">
@@ -74,65 +78,33 @@
 
   <div class="main-dropdown">
     <label for="role-dropdown">Select Role:</label>
-    <select id="role-dropdown" class="form-select" onchange="handleRoleChange()">
-      <option value="admin">Admin</option>
-      <option value="user">User</option>
-      <option value="vet">Vet</option>
+    <select id="selected-role" class="form-select" onchange="roleName()">
+    
     </select>
   </div>
 
 
   <div class="main-cards">
-    <div class="role-details" id="admin-details">
-      <h2>Admin Role Details</h2>
-      <div class="role-permissions">
-        <div>
-          <input type="checkbox" id="usermanagementaccess" name="viewmanagement">
-          <label for="viewmanagement">User Mangement Access</label>
-        </div>
-        <div>
-          <input type="checkbox" id="editmanagement" name="vetmanagementaccess">
-          <label for="editmanagement">Vet Management Access</label>
-        </div>
-        <div>
-          <input type="checkbox" id="permissioncreate" name="addproducts">
-          <label for="addproducts">Permission Create</label>
-        </div>
-        <div>
-          <input type="checkbox" id="permissionshow" name="viewproducts">
-          <label for="viewproducts">Permission show</label>
-        </div>
-        <div>
-          <input type="checkbox" id="permissiondelete" name="deleteproducts">
-          <label for="deleteproducts">Permission Delete</label>
-        </div>
-        <div>
-          <input type="checkbox" id="rolecreate" name="viewprofile">
-          <label for="viewprofile">Role Create</label>
-        </div>
-        <div>
-          <input type="checkbox" id="roleedit" name="pets">
-          <label for="viewprofile">Role Edit</label>
-        </div>
-        <div>
-          <input type="checkbox" id="roledelete" name="pets">
-          <label for="viewprofile">Role Delete</label>
-        </div>
-        <div>
-          <input type="checkbox" id="pet" name="pets">
-          <label for="viewprofile">Pets</label>
-        </div>
-        <div>
-          <input type="checkbox" id="accessories" name="pets">
-          <label for="viewprofile">Pets Accessories</label>
-        </div>
+    <div class="role-details">
+      <div id="role-name">
+        
       </div>
+      <div class="role-permissions" id="role-permission">
+
+      </div>
+
+      <div class="mt-4" style="display: flex;
+      flex-direction: column;
+      align-items: flex-end;">
+        <button type="button" class="btn btn-success" onclick="savePermissions()">Submit</button>
+      </div>
+
     </div>
     
 
   </div>
   <!-- Add the following code inside the main-cards div, under the existing role-details div -->
-  <div class="main-cards">
+  <!-- <div class="main-cards">
 <div class="role-details" id="vet-details">
   <h2>Vet Role Details</h2>
   <div class="role-permissions">
@@ -202,7 +174,7 @@
       </div>
     </div>
   </div>
-  </div>
+  </div> -->
   
 
 </main>

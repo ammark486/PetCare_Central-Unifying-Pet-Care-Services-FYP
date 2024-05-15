@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.dto.LoginCredential;
+import com.example.demo.dto.UserDetailsDto;
 import com.example.demo.security.util.AuthenticationResponse;
 import com.example.demo.security.util.JwtUtil;
 import com.example.demo.service.MyUserDetailService;
@@ -41,6 +42,7 @@ public class LoginController {
 
         UserDetails userDetails = myUserDetailService.loadUserByUsername(loginCredentials.getUserName());
         String jwtToken = jwtUtil.generateToken(userDetails);
+        UserDetailsDto userDetailsDto = new UserDetailsDto();
 
         return ResponseEntity.ok(new AuthenticationResponse(jwtToken));
     }

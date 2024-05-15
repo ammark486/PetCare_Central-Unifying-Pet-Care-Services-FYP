@@ -57,29 +57,30 @@
 
       <ul class="sidebar-list">
         <li class="sidebar-list-item" data-page="admindashboard.html">
-          <a href="#">
-            <span class="material-icons-outlined">dashboard</span> Dashboard
-          </a>
+            <a href="#">
+                <span class="material-icons-outlined">dashboard</span> Dashboard
+            </a>
         </li>
         <li class="sidebar-list-item" data-page="permission.html">
-          <a href="#">
-            <span class="material-icons-outlined">shield</span> Permission
-          </a>
+            <a href="#">
+                <span class="material-icons-outlined">shield</span> Permission
+            </a>
         </li>
         <li class="sidebar-list-item" data-page="management.html">
-          <a href="#">
-            <span class="material-icons-outlined">settings</span> Management
-            <span class="material-icons-outlined">keyboard_arrow_down</span> <!-- Dropdown arrow icon -->
-          </a>
-          <!-- Dropdown menu -->
-          <ul class="dropdown-menu">
-            <li><a href="#">Add</a></li>
-            <li><a href="#">Edit</a></li>
-            <li><a href="#">View</a></li>
-          </ul>
+            <a href="#" class="dropdown-toggle">
+                <span class="material-icons-outlined">settings</span> Management
+                <span class="material-icons-outlined dropdown-icon"></span> <!-- Dropdown arrow icon -->
+            </a>
+            <ul class="dropdown-menu">
+                <li class="dropdown-item" data-page="subpage1.html">
+                    <a href="#">Subpage 1</a>
+                </li>
+                <li class="dropdown-item" data-page="subpage2.html">
+                    <a href="#">Subpage 2</a>
+                </li>
+            </ul>
         </li>
-
-      </ul>
+    </ul>
 
     </aside>
     <!-- End Sidebar -->

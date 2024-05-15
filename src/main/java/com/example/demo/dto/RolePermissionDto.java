@@ -9,9 +9,8 @@ import lombok.*;
 @Setter
 @ToString
 @Builder
-public class UserDto {
-    private Long id;
-    private String userName;
-    private String password;
-    private boolean status;
+public class RolePermissionDto {
+    private Long roleId;
+    private Long permissionId;
+    private Boolean active;
 }

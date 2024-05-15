@@ -1,38 +1,43 @@
-// JavaScript for sidebar functionality
 document.addEventListener('DOMContentLoaded', function () {
     // Get all sidebar list items
     const sidebarItems = document.querySelectorAll('.sidebar-list-item');
 
     // Add click event listener to each sidebar item
     sidebarItems.forEach(item => {
-        item.addEventListener('click', function () {
-            // Get the target page based on the data attribute
-            const targetPage = this.dataset.page;
+        item.addEventListener('click', function (event) {
+            // Prevent default behavior for all clicks on sidebar items
+            event.preventDefault();
 
-            // Navigate to the target page
-            window.location.href = targetPage;
-        });
-    });
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-    const sidebarItems = document.querySelectorAll('.sidebar-list-item');
-
-    sidebarItems.forEach(item => {
-        item.addEventListener('click', function () {
-            // Remove active class from all sidebar items
+            // Toggle the active class for clicked sidebar item
             sidebarItems.forEach(item => {
                 item.classList.remove('active');
             });
-
-            // Add active class to the clicked sidebar item
             this.classList.add('active');
 
             // Get the target page based on the data attribute
             const targetPage = this.dataset.page;
 
-            // Navigate to the target page
-            window.location.href = targetPage;
+            // If the clicked item has a dropdown arrow, toggle the dropdown menu
+            if (this.querySelector('.dropdown-icon')) {
+                const dropdownMenu = this.querySelector('.dropdown-menu');
+                dropdownMenu.classList.toggle('show');
+            } else {
+                // Navigate to the target page
+                window.location.href = targetPage;
+            }
+        });
+    });
+
+    // Add click event listener to dropdown arrow icons
+    const dropdownIcons = document.querySelectorAll('.dropdown-icon');
+    dropdownIcons.forEach(icon => {
+        icon.addEventListener('click', function (event) {
+            // Prevent default behavior for clicks on dropdown icons
+            event.preventDefault();
+
+            // Toggle the dropdown menu associated with the clicked arrow icon
+            const dropdownMenu = this.parentElement.nextElementSibling;
+            dropdownMenu.classList.toggle('show');
         });
     });
 
@@ -45,7 +50,3 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 });
-
-
-
-
