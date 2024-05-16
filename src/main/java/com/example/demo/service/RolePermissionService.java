@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.model.Permission;
 import com.example.demo.model.Role;
 import com.example.demo.model.RolePermission;
 import com.example.demo.repository.RolePermissionRepo;
@@ -25,5 +26,9 @@ public class RolePermissionService {
     List<RolePermission> findByRoleId(Long roleId){
         List<RolePermission> rolePermissions = this.rolePermissionRepo.findByRoleId(roleId);
         return rolePermissions;
+    }
+
+    public List<String> findByRoleIdActiveTrue(Long id) {
+        return this.rolePermissionRepo.findByRoleIdActiveTrue(id);
     }
 }

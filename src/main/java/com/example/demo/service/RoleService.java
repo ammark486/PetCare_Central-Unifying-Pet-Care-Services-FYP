@@ -32,4 +32,5 @@ public class RoleService {
         message.setData(this.roleRepository.findAll());
         return message;
     }
+
 }

@@ -1,3 +1,4 @@
+let permission_label = 'MANAGE_PRODUCT'
 let allproductTypes;
 let product;
 let productId;

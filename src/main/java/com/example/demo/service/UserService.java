@@ -4,7 +4,9 @@ import com.example.demo.constants.UserRoles;
 import com.example.demo.dto.UserDto;
 import com.example.demo.exception.RecordAlreadyExistException;
 import com.example.demo.exception.RecordNotSavedException;
+import com.example.demo.model.Permission;
 import com.example.demo.model.Role;
+import com.example.demo.model.RolePermission;
 import com.example.demo.model.User;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.util.Message;
@@ -15,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
 import java.util.Set;
 
@@ -28,6 +31,8 @@ public class UserService {
     private RoleService roleService;
     @Autowired
     ModelMapper modelMapper;
+    @Autowired
+    RolePermissionService rolePermissionService;
 
     public Message<UserDto> save(UserDto user){
             if(this.userRepository.findByUserName(user.getUserName()) ==  null){
@@ -66,5 +71,13 @@ public class UserService {
         Set<Role> roles = new HashSet<>();
         roles.add(this.roleService.getRoleByName(role));
         return roles;
+    }
+
+    public User getUserByUserName(String username) {
+        return this.userRepository.findByUserName(username);
+    }
+
+    public List<String> getUserPermissions(Long id) {
+        return this.rolePermissionService.findByRoleIdActiveTrue(id);
     }
 }

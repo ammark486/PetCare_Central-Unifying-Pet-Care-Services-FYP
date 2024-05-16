@@ -1,3 +1,4 @@
+let permission_label = 'MANAGE_PRODUCT'
 let page = 0;
 let size = 10;
 let totalPages;

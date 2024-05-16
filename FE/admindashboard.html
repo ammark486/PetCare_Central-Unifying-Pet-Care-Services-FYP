@@ -10,6 +10,8 @@
 
     <!-- Montserrat Font -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
     <!-- Material Icons -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
@@ -25,15 +27,26 @@
 
       <!-- Header -->
       <header class="header">
-        <div class="menu-icon" onclick="openSidebar()">
-          <span class="material-icons-outlined">menu</span>
-        </div>
-        <div class="header-left">
-          <span class="material-icons-outlined">search</span>
-        </div>
-        <div class="header-right">
-          <span class="material-icons-outlined">account_circle</span>
-        </div>
+        <nav class="navbar navbar-expand-lg w-100">
+          <div class="container">
+            <a class="navbar-brand" href="#">
+                <img decoding="async" src="images/logo.png" class="img-fluid" alt="Logo" width="170" height="100" >
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <!-- <span class="navbar-toggler-icon"></span> -->
+              <i class="fas fa-stream navbar-toggler-icon"></i>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+
+            </div>
+            <div>
+              <button type="button" class="btn btn-light" onclick="redirectToCustomerPanel()">Customer Panel</button>
+            </div>
+            <div style="margin-left: 3%;">
+              <button type="button" class="btn btn-light" onclick="logInOrOut()">Logout</button>
+            </div>
+             </nav>
+          <!-- Image in the top-right corner of the navbar -->
       </header>
       <!-- End Header -->
 
@@ -47,22 +60,36 @@
         </div>
 
         <ul class="sidebar-list">
-          <li class="sidebar-list-item" data-page="admindashboard.html">
-              <a href="#">
-                  <span class="material-icons-outlined">dashboard</span> Dashboard
-              </a>
+          <li class="sidebar-list-item" onclick="routeTo('adminDashboard.html')">
+            <a >
+              <span class="material-icons-outlined">dashboard</span> Dashboard
+            </a>
           </li>
-          <li class="sidebar-list-item" data-page="permission.html">
-              <a href="#">
-                  <span class="material-icons-outlined">shield</span> Permission
-              </a>
+          <li class="sidebar-list-item" onclick="routeTo('permission.html')">
+            <a >
+              <span class="material-icons-outlined">shield</span> Permission
+            </a>
           </li>
-          <li class="sidebar-list-item" data-page="management.html">
-              <a href="#">
-                  <span class="material-icons-outlined">settings</span> Management
-              </a>
+          <li class="sidebar-list-item parent">
+            <a class="toggle-menu">
+              <span class="material-icons-outlined">settings</span> Management
+            </a>
+            <ul class="nested-ul">
+              <li class="nested-list-item" onclick="routeTo('management.html')">
+                <a>
+                  <span class="material-icons-outlined">dashboard</span> Product
+                </a>
+              </li>
+              <li class="nested-list-item" onclick="routeTo('managementview.html')">
+                <a>
+                  <span class="material-icons-outlined">shield</span> Product List
+                </a>
+              </li>
+            </ul>
           </li>
-      </ul>
+        </ul>
+        
+
       
       </aside>
       <!-- End Sidebar -->
@@ -176,5 +203,7 @@
     <!-- Custom JS -->
     <script src="js/dashboard.js"></script>
     <script src="js/adminsidebar.js"></script>
+    <script src="js/auth-guard.js"></script>
+    <script src="js/user-redirect.js"></script>
   </body>
 </html>

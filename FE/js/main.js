@@ -96,26 +96,8 @@ function editConsultationHours() {
   // You can replace the alert with your actual code to edit consultation hours
 }
 
-loginStatus();
 
-function loginStatus(){
-    const token = localStorage.getItem("jwt");
-    var data = ``;
-    if(!token){
-        data += `<button type="button" class="btn btn-light" onClick=logInOrOut()>Login</button>`
-    }else{
-        data += `<button type="button" class="btn btn-light" onClick=logInOrOut()>Logout</button>`
-    }
-
-    document.getElementById('login-status').innerHTML = data;
-}
-
-function logInOrOut(){
-    localStorage.removeItem("jwt");
-    window.location.href = 'customersignin.html';
-}
-
-console.log(parseJwt('eyJhbGciOiJIUzI1NiJ9.eyJQRVJNSVNTSU9OUyI6W10sIlJPTEVTIjpbIkNVU1RPTUVSIl0sInN1YiI6InJvbGVAZ21haWwuY29tIiwiaWF0IjoxNzE1NzIwMzI1LCJleHAiOjE3MTYwODAzMjV9.hKmL1CzRtFoyN4yzMSbJukdD5px_Vt7Ngo9qwGC-P2U'))
+// console.log(parseJwt('eyJhbGciOiJIUzI1NiJ9.eyJQRVJNSVNTSU9OUyI6W10sIlJPTEVTIjpbIkNVU1RPTUVSIl0sInN1YiI6InJvbGVAZ21haWwuY29tIiwiaWF0IjoxNzE1NzIwMzI1LCJleHAiOjE3MTYwODAzMjV9.hKmL1CzRtFoyN4yzMSbJukdD5px_Vt7Ngo9qwGC-P2U'))
 
 function parseJwt (token) {
   var base64Url = token.split('.')[1];

@@ -1,12 +1,14 @@
 package com.example.demo.dto;
 
+import com.example.demo.model.Permission;
 import com.example.demo.model.Role;
 import lombok.*;
 
-import java.util.Set;
+import java.util.*;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Getter
 @Setter
 @ToString
@@ -14,11 +16,6 @@ import java.util.Set;
 public class UserDetailsDto {
     private Long id;
     private String userName;
-    private Set<Role> roleSet;
-
-    public UserDetailsDto(Long id, String userName, Set<Role> roleSet) {
-        this.id = id;
-        this.userName = userName;
-        this.roleSet = roleSet;
-    }
+    private String role;
+    private List<String> permissions;
 }
