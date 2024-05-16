@@ -34,11 +34,16 @@ async function login(){
   
      
       const result = await response.json();
-      
-      console.log(result);
       localStorage.setItem('jwt', result.jwt);
+      localStorage.setItem('userDetails', JSON.stringify(result.userDetailsDto));
       if(result.jwt){
+       if(result.userDetailsDto.role == 'ROLE_ADMIN'){
+        window.location.href = 'admindashboard.html';
+       }else if(result.userDetailsDto.role == 'ROLE_VET'){
+
+       }else{
         window.location.href = 'home.html';
+       }
       }
       console.log("Success:", result);
     } catch (error) {

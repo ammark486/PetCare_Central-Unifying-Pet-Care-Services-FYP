@@ -40,17 +40,17 @@ public class JwtUtil {
         List<String> roles = new ArrayList<>();
         List<String> permissions = new ArrayList<>();
 
-//        userDetails.getAuthorities().forEach(authority -> {
-//            String authorityName = authority.getAuthority();
-//            if (authorityName.startsWith("ROLE_")) {
-//                roles.add(authorityName.substring(5));
-//            } else {
-//                permissions.add(authorityName);
-//            }
-//        });
-//
-//        claims.put("ROLES", roles);
-//        claims.put("PERMISSIONS", permissions);
+        userDetails.getAuthorities().forEach(authority -> {
+            String authorityName = authority.getAuthority();
+            if (authorityName.startsWith("ROLE_")) {
+                roles.add(authorityName.substring(5));
+            } else {
+                permissions.add(authorityName);
+            }
+        });
+
+        claims.put("ROLES", roles);
+        claims.put("PERMISSIONS", permissions);
 
         return createToken(claims, userDetails.getUsername());
     }

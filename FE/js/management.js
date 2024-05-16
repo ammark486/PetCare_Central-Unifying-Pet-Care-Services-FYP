@@ -1,3 +1,4 @@
+let permission_label = 'MANAGE_PRODUCT'
 let allproductTypes;
 let product;
 let productId;
@@ -277,8 +278,18 @@ async function addProduct() {
   } else if (response.status == 200) {
     showProductTypes();
     alert(response.message);
+    clearProductForm();
   } else {
     console.error("Error:", response.message);
+  }
+}
+
+function clearProductForm(){
+
+  if(productId){
+    window.location.href = 'management.html?id=' + productId;
+  }else{
+    window.location.href = "management.html";
   }
 }
 
@@ -295,3 +306,5 @@ async function handleImageUpload() {
   response = await response.json();
   imageUrl = response.fileName;
 }
+
+

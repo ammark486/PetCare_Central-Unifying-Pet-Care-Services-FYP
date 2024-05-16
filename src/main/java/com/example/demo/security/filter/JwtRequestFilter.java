@@ -61,7 +61,7 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
             filterChain.doFilter(request, response);
         } catch (Exception e) {
-         throw new UserUnauthorizeException("You are not authorize");
+            e.printStackTrace();
         }
 
     }

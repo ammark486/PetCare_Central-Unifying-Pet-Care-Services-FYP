@@ -96,21 +96,15 @@ function editConsultationHours() {
   // You can replace the alert with your actual code to edit consultation hours
 }
 
-loginStatus();
 
-function loginStatus(){
-    const token = localStorage.getItem("jwt");
-    var data = ``;
-    if(!token){
-        data += `<button type="button" class="btn btn-light" onClick=logInOrOut()>Login</button>`
-    }else{
-        data += `<button type="button" class="btn btn-light" onClick=logInOrOut()>Logout</button>`
-    }
+// console.log(parseJwt('eyJhbGciOiJIUzI1NiJ9.eyJQRVJNSVNTSU9OUyI6W10sIlJPTEVTIjpbIkNVU1RPTUVSIl0sInN1YiI6InJvbGVAZ21haWwuY29tIiwiaWF0IjoxNzE1NzIwMzI1LCJleHAiOjE3MTYwODAzMjV9.hKmL1CzRtFoyN4yzMSbJukdD5px_Vt7Ngo9qwGC-P2U'))
 
-    document.getElementById('login-status').innerHTML = data;
-}
+function parseJwt (token) {
+  var base64Url = token.split('.')[1];
+  var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+  var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+      return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+  }).join(''));
 
-function logInOrOut(){
-    localStorage.removeItem("jwt");
-    window.location.href = 'customersignin.html';
+  return JSON.parse(jsonPayload);
 }

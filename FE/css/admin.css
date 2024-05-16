@@ -523,3 +523,71 @@ th {
     justify-content: end;
   }
 
+  /* Initially hide the nested ul */
+  .nested-ul {
+    display: none;
+    padding: 0;
+    margin-top: 15px;
+    list-style-type: none;
+  }
+
+  .sidebar-list-item.parent:hover .nested-ul {
+    display: block;
+  }
+
+  .nested-list-item {
+    color: #004caa;
+    background-color: #939393;
+  }
+
+  .nested-list-item {
+    padding: 20px 20px 20px 20px;
+  }
+  
+  .nested-list-item:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    cursor: pointer;
+  }
+  
+  .nested-list-item > a {
+    text-decoration: none;
+    color: #ffffff;
+  }
+  
+  .nested-responsive {
+    display: inline !important;
+    position: absolute;
+    /*
+      the z-index of the ApexCharts is 11
+      we want the z-index of the sidebar higher so that
+      the charts are not showing over the sidebar 
+      on small screens
+    */
+    z-index: 12 !important;
+  }
+  .nested-list-item.active {
+    background-color: #fc5185;
+    font-weight: bold;
+    color:#004caa;
+  }
+  
+  .nested-list-item.active a {
+    color: darkblue;
+  }
+  
+  /* Show the nested ul when hovering over the parent li */
+  /* .sidebar-list-item.parent:hover .nested-ul {
+    display: block;
+  } */
+  
+  /* Show the nested ul when hovering over the parent li */
+  /* .sidebar-list-item.parent:hover .nested-ul {
+    display: block;
+  } */
+
+/* Show the nested ul when hovering over the parent li */
+/* .sidebar-list-item.parent:hover .nested-ul {
+  display: block;
+} */
+
+

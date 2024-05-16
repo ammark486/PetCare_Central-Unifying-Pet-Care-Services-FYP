@@ -22,20 +22,24 @@ public class CustomUserDetail implements UserDetails {
         List<SimpleGrantedAuthority> authorityList = new ArrayList<>();
 
         // Add roles to authorities
-//        this.user.getRoles().forEach(role -> {
-//            authorityList.add(new SimpleGrantedAuthority(role.getName()));
-//
-//            // Add permissions associated with the role to authorities
+        this.user.getRoles().forEach(role -> {
+            authorityList.add(new SimpleGrantedAuthority(role.getName()));
+
+            // Add permissions associated with the role to authorities
 //            role.getPermissions().forEach(permission -> {
 //                authorityList.add(new SimpleGrantedAuthority(permission.getName()));
 //            });
-//        });
+        });
 
         return authorityList;
     }
 
     public Long getUserId(){
         return this.user.getId();
+    }
+
+    public User getUser() {
+        return this.user;
     }
 
     @Override

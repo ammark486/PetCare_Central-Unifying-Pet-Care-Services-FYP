@@ -5,6 +5,7 @@ import com.example.demo.service.MyUserDetailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -42,6 +43,7 @@ class SecurityConfigure extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/product/categoryId").permitAll()
                 .antMatchers("/api/sign-up").permitAll()
                 .antMatchers("/api/file/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/product/{id}").permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
