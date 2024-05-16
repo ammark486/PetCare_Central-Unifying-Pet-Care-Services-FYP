@@ -40,7 +40,7 @@ async function getProductById(){
   document.getElementById('product-description').innerHTML = description;
 
   var image = `<div class="label-text">Image</div>
-  <div class="mt-3"><img src="${response.data.imageUrl}"></div>`
+  <div class="mt-3"><img class="product-view-image" src="${response.data.imageUrl}"></div>`
 
   document.getElementById('product-image').innerHTML = image;
 

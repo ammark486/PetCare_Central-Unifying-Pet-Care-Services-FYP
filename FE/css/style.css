@@ -503,7 +503,7 @@ header h1 {
 
 .card-img-top {
     max-width: 100%;
-    max-height: 220px;
+    max-height: 300px;
     height: auto;
 }
 
@@ -1009,6 +1009,11 @@ header h1 {
 .label-text {
     font-weight: bold;
     font-size: 20px;
+}
+
+.product-view-image {
+    max-height: 130px;
+    max-width: 130px;
 }
 
 
