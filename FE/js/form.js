@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function() {
     var form = document.querySelector('form');
 
@@ -12,26 +11,33 @@ document.addEventListener('DOMContentLoaded', function() {
         var service = document.getElementById('service').value;
         var species = document.getElementById('species').value;
         var date = document.getElementById('date').value;
+        var veterinarian = document.getElementById('vets').value;
 
         // Validation for the name
-        var nameRegex = /^[a-zA-Z]{1,12}$/; // Regex for alphabets only, up to 12 characters
+        var nameRegex = /^[a-zA-Z\s]+$/; // Regex for alphabets and spaces only
         if (!nameRegex.test(name)) {
-            alert('Please enter a valid name with alphabets only, up to 12 characters.');
+            alert('Please enter a valid name ');
+            return false;
+        }
+        if (name.length > 30) {
+            alert('Upto 30 characters are allowed.');
             return false;
         }
 
         // Validate the contact number
-        var contactRegex = /^\+92[0-9]{10}$/; // Regex for a valid Pakistani phone number starting with +92
+        var contactRegex = /^\+92[0-9]{10}$/; // Regular expression to match +92 followed by 10 digits
         if (!contactRegex.test(contactNumber)) {
-            alert('Please enter a valid Pakistani contact number starting with +92.');
+            alert('Please enter a valid phone number.');
             return false;
         }
 
+        // Validate the service
         if (service === 'Select') {
             alert('Please select a service.');
             return false;
         }
 
+        // Validate the species
         if (species === 'Select') {
             alert('Please select a species.');
             return false;
@@ -44,6 +50,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
         if (selectedDate < currentDate) {
             alert('Please choose a date that is today or a future date.');
+            return false;
+        }
+
+        // Validate the veterinarian
+        if (veterinarian === 'Select') {
+            alert('Please choose a veterinarian.');
             return false;
         }
 
@@ -88,5 +100,3 @@ function addTimeSlots(slots) {
         timeSlotsSelect.add(option);
     }
 }
-
-
