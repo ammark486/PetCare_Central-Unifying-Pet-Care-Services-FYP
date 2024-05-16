@@ -6,13 +6,13 @@ function loginStatus(){
     var data = ``;
     var userRedirection = ``;
     if(!token){
-        data += `<button type="button" class="btn btn-light" onClick=logInOrOut()>Login</button>`
+        data += `<button style="background-color: #f1f1f1bd !important" type="button" class="btn btn-light" onClick=logInOrOut()>Login</button>`
     }else{
-        data += `<button type="button" class="btn btn-light" onClick=logInOrOut()>Logout</button>`
+        data += `<button style="background-color: #f1f1f1bd !important" type="button" class="btn btn-light" onClick=logInOrOut()>Logout</button>`
     }
 
     if(userDetails && userDetails.role == 'ROLE_ADMIN'){
-        userRedirection+= `<button type="button" class="btn btn-light" onClick=adminPanelRoute()>Admin Panel</button>`
+        userRedirection+= `<button style="background-color: #f1f1f1bd !important" type="button" class="btn btn-light" onClick=adminPanelRoute()>Admin Panel</button>`
     }
 
     document.getElementById('login-status').innerHTML = data;
