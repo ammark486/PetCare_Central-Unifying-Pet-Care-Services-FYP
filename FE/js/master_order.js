@@ -1,3 +1,4 @@
+let permission_label = 'ORDER'
 let page = 0;
 let size = 10;
 let totalPages;

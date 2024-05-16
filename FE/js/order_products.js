@@ -1,3 +1,4 @@
+let permission_label = 'ORDER'
 let masterId;
 
 getOrderProductByMasterOrderId();

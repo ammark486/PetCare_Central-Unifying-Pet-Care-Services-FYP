@@ -15,20 +15,30 @@ import java.util.UUID;
 public class FileService {
 
     @Value("${server.port}")
-    String serverPort;
+    private int serverPort;
+
     public UploadResponseDto uploadFile(String path, MultipartFile file) throws IOException {
         String name = file.getOriginalFilename();
         String randomId = UUID.randomUUID().toString();
-        String completePath = randomId.concat(name.substring(name.lastIndexOf(".")));
-        String filePath = path + File.separator + completePath;
-        File f = new File(path);
-        if(!f.exists()){
-            f.mkdir();
+        String completePath = randomId + name.substring(name.lastIndexOf("."));
+        String filePath = Paths.get(path, completePath).toString();
+
+        // Ensure the directory exists
+        File directory = new File(path);
+        if (!directory.exists()) {
+            if (!directory.mkdirs()) {
+                throw new IOException("Failed to create directory: " + path);
+            }
         }
 
+        // Save the file
         Files.copy(file.getInputStream(), Paths.get(filePath));
+
+        // Build response DTO
         UploadResponseDto uploadResponseDto = UploadResponseDto.builder()
-                .fileName("http://localhost:"+serverPort + "/api/file/"+ completePath).build();
+                .fileName("http://localhost:" + serverPort + "/api/file/" + completePath)
+                .build();
+
         return uploadResponseDto;
     }
 
