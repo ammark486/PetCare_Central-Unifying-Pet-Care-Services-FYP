@@ -6,11 +6,16 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface UserRepository extends JpaRepository<User,Long>, JpaSpecificationExecutor<User> {
     User findByUserName(String username);
 
     @Query(value = "SELECT COUNT(id) AS users FROM user WHERE YEAR(registration_date) = :year", nativeQuery = true)
     Long countAllUsersByYear(String year);
+
+    @Query("SELECT u FROM User u JOIN u.roles r WHERE r.name = :role")
+    List<User> getUsersByRole(String role);
 }
 

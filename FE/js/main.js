@@ -108,3 +108,7 @@ function parseJwt (token) {
 
   return JSON.parse(jsonPayload);
 }
+
+function routeToVetProfile(){
+  window.location.href = 'vet-profile.html';
+}

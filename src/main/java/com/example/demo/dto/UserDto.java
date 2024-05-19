@@ -13,5 +13,8 @@ public class UserDto {
     private Long id;
     private String userName;
     private String password;
+    private String fullName;
+    private String availableDays;
+    private String bio;
     private boolean status;
 }

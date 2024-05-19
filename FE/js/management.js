@@ -4,7 +4,7 @@ let product;
 let productId;
 let imageUrl;
 showProductTypes();
-checkProductUpdate();
+
 
 function getParameterByName(name, url) {
   if (!url) url = window.location.href;
@@ -200,6 +200,7 @@ async function showProductTypes() {
       data += `<option value="${el.id}">${el.name}</option>`;
     });
     document.getElementById("all-products").innerHTML = data;
+    checkProductUpdate();
   } else {
     console.error("Error:", response.statusText);
   }

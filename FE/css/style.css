@@ -505,6 +505,9 @@ header h1 {
     max-width: 100%;
     max-height: 300px;
     height: auto;
+    object-fit: cover;
+    min-width: 100%;
+    min-height: 300px;
 }
 
 .card-title {
@@ -1014,6 +1017,10 @@ header h1 {
 .product-view-image {
     max-height: 130px;
     max-width: 130px;
+}
+
+.color-black {
+    color: black;
 }
 
 

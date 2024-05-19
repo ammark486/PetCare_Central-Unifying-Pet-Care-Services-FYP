@@ -80,4 +80,28 @@ public class UserService {
     public List<String> getUserPermissions(Long id) {
         return this.rolePermissionService.findByRoleIdActiveTrue(id);
     }
+
+    public Message<List<User>> getUsersByRole(String role) {
+        List<User> users = this.userRepository.getUsersByRole(role);
+        for(User user: users){
+            user.setPassword(null);
+        }
+        Message<List<User>> message = new Message<>();
+        message.setMessage("fetch user successsfully");
+        message.setCode(StatusCode.OK.name());
+        message.setStatus(StatusCode.OK.value());
+        message.setData(users);
+        return message;
+    }
+
+    public Message<User> getUsersByById(Long id) {
+        User user = this.userRepository.findById(id).get();
+        user.setPassword(null);
+        Message<User> message = new Message<>();
+        message.setMessage("fetch user successsfully");
+        message.setCode(StatusCode.OK.name());
+        message.setStatus(StatusCode.OK.value());
+        message.setData(user);
+        return message;
+    }
 }

@@ -118,4 +118,8 @@ public class ProductService {
         product.setIsActive(false);
         this.productRepo.save(product);
     }
+
+    List<Product> findByIdIn(List<Long> productIds){
+        return this.productRepo.findByIdIn(productIds);
+    }
 }

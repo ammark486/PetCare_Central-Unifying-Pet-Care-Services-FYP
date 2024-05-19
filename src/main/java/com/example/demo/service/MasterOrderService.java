@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.constants.StatusCode;
 import com.example.demo.dto.MasterOrderDto;
 import com.example.demo.dto.ProductDto;
+import com.example.demo.dto.ProductTemplateDto;
 import com.example.demo.exception.RecordNotFoundException;
 import com.example.demo.exception.RecordNotSavedException;
 import com.example.demo.model.MasterOrder;
@@ -10,6 +11,7 @@ import com.example.demo.model.OrderProduct;
 import com.example.demo.model.Product;
 import com.example.demo.model.ProductType;
 import com.example.demo.repository.MasterOrderRepo;
+import com.example.demo.template.EmailTemplate;
 import com.example.demo.util.Message;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +19,10 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import javax.swing.plaf.PanelUI;
 import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.security.Principal;
-import java.security.PublicKey;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,15 +38,17 @@ public class MasterOrderService {
     private final ProductService productService;
     private final UserService userService;
     private final ProductTypeService productTypeService;
+    private final EmailService emailService;
     @Autowired
     ModelMapper modelMapper;
 
-    public MasterOrderService(MasterOrderRepo masterOrderRepo, OrderService orderService, ProductService productService, UserService userService, ProductTypeService productTypeService) {
+    public MasterOrderService(MasterOrderRepo masterOrderRepo, OrderService orderService, ProductService productService, UserService userService, ProductTypeService productTypeService, EmailService emailService) {
         this.masterOrderRepo = masterOrderRepo;
         this.orderService = orderService;
         this.productService = productService;
         this.userService = userService;
         this.productTypeService = productTypeService;
+        this.emailService = emailService;
     }
 
     @Transactional
@@ -56,9 +58,16 @@ public class MasterOrderService {
            masterOrderDto.setOrderDate(LocalDate.now());
            masterOrderDto.setStatus(false);
            List<OrderProduct> orderProducts = new ArrayList<>();
-           List<Long> productIds = masterOrderDto.getProductIds().keySet().stream().collect(Collectors.toList());
-           Integer totalAmount = 0;
-           masterOrderDto.setTotalAmount(this.productService.sumOfProducts(productIds));
+           Integer totalAmount = masterOrderDto.getProductIds().entrySet().stream()
+                   .mapToInt(entry -> {
+                       Long productId = entry.getKey();
+                       Integer quantity = entry.getValue();
+                       ProductDto productDto = this.productService.findById(productId);
+                       return (int) (productDto.getPrice() * quantity);
+                   })
+                   .sum();
+//           List<Long> productIds = masterOrderDto.getProductIds().keySet().stream().collect(Collectors.toList());
+           masterOrderDto.setTotalAmount(totalAmount);
            MasterOrder masterOrder = this.modelMapper.map(masterOrderDto, MasterOrder.class);
 
 
@@ -75,6 +84,16 @@ public class MasterOrderService {
            masterOrder = this.masterOrderRepo.save(masterOrder);
            this.orderService.saveOrderProducts(orderProducts);
            this.activeProduct(orderProducts);
+           List<ProductTemplateDto> productTemplateDtos = new ArrayList<>();
+           for(OrderProduct orderProduct: orderProducts){
+               ProductDto productDto = this.productService.findById(orderProduct.getProduct().getId());
+               ProductTemplateDto productTemplateDto = new ProductTemplateDto();
+               productTemplateDto.setName(productDto.getName());
+               productTemplateDto.setQuantity(orderProduct.getCount().toString());
+               productTemplateDto.setPrice(productDto.getPrice().toString());
+               productTemplateDtos.add(productTemplateDto);
+           }
+           this.emailService.sendEmail(principal.getName(), "ORDER CONFIRMATION", EmailTemplate.getOrderTemplate(productTemplateDtos, masterOrderDto.getAddress() +", "+masterOrderDto.getCity(), masterOrderDto.getTotalAmount().toString()), true);
            return ResponseService.responseData("Order save successfully", this.modelMapper.map(masterOrder, MasterOrderDto.class));
        }catch(Exception e){
            throw new RecordNotSavedException("Order couldn't save");

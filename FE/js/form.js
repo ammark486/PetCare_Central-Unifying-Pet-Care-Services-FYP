@@ -1,92 +1,180 @@
+let user;
+let vetId;
+let availableDays = [];
+const days = [
+  "SUNDAY",
+  "MONDAY",
+  "TUESDAY",
+  "WEDNESDAY",
+  "THURSDAY",
+  "FRIDAY",
+  "SATURDAY",
+];
 
-document.addEventListener('DOMContentLoaded', function() {
-    var form = document.querySelector('form');
+getVet();
 
-    form.addEventListener('submit', function(event) {
-        // Prevent the default form submit action
-        event.preventDefault();
+async function getVet() {
+  vetId = getQueryParam("id");
+  let response = await fetch(`http://localhost:8080/api/user/${vetId}`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 
-        // Perform validation checks
-        var name = document.getElementById('name').value;
-        var contactNumber = document.getElementById('contactNumber').value;
-        var service = document.getElementById('service').value;
-        var species = document.getElementById('species').value;
-        var date = document.getElementById('date').value;
+  response = await response.json();
 
-        // Validation for the name
-        var nameRegex = /^[a-zA-Z]{1,12}$/; // Regex for alphabets only, up to 12 characters
-        if (!nameRegex.test(name)) {
-            alert('Please enter a valid name with alphabets only, up to 12 characters.');
-            return false;
-        }
+  if (response.status === 403) {
+    window.location.href = "customersignin.html";
+    alert("Forbidden: You do not have permission to access this resource.");
+  }
+  if (response.status === 401) {
+    window.location.href = "customersignin.html";
+  } else if (response.status == 200) {
+    user = response.data;
+    availableDays = user.availableDays.split(",");
+  }
+}
 
-        // Validate the contact number
-        var contactRegex = /^\+92[0-9]{10}$/; // Regex for a valid Pakistani phone number starting with +92
-        if (!contactRegex.test(contactNumber)) {
-            alert('Please enter a valid Pakistani contact number starting with +92.');
-            return false;
-        }
+function getQueryParam(name) {
+  const urlParams = new URLSearchParams(window.location.search);
+  return urlParams.get(name);
+}
 
-        if (service === 'Select') {
-            alert('Please select a service.');
-            return false;
-        }
+function getSelectedDate() {
+  const dateInput = document.getElementById("date").value;
+  const checkDay = new Date(dateInput);
+  var currentDate = new Date();
+  currentDate.setHours(0, 0, 0, 0);
 
-        if (species === 'Select') {
-            alert('Please select a species.');
-            return false;
-        }
+  if (checkDay < currentDate) {
+    document.getElementById("date").value = "";
+    alert("Please choose a date that is today or a future date.");
+    return false;
+  } else if (availableDays.includes(days[checkDay.getDay()])) {
+    getAvailableSlotes(dateInput);
+  } else {
+    document.getElementById("date").value = "";
+    alert("Select only " + availableDays);
+  }
+}
 
-        // Validation for the date
-        var selectedDate = new Date(date);
-        var currentDate = new Date();
-        currentDate.setHours(0, 0, 0, 0); // Set current date to midnight for accurate comparison
+async function getAvailableSlotes(date) {
+  let response = await fetch(
+    `http://localhost:8080/api/availableslots?date=${date}`,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
 
-        if (selectedDate < currentDate) {
-            alert('Please choose a date that is today or a future date.');
-            return false;
-        }
+  response = await response.json();
 
-        // If all validations pass, submit the form
-        form.submit();
+  if (response.status === 403) {
+    window.location.href = "customersignin.html";
+    alert("Forbidden: You do not have permission to access this resource.");
+  }
+  if (response.status === 401) {
+    window.location.href = "customersignin.html";
+  } else if (response.status == 200) {
+    var data = `<option value="select" selected>Select</option>`;
+    response.data.forEach((el) => {
+      data += `<option value="${el.id}" >${el.name}</option>`;
     });
-});
 
-function updateTimeSlots() {
-    var selectedVeterinarian = document.getElementById("vets").value;
-    var timeSlotsContainer = document.getElementById("timeSlotsContainer");
-    var timeSlotsSelect = document.getElementById("timeSlots");
-
-    // Clear previous options
-    timeSlotsSelect.innerHTML = '<option selected>Select Veterinarian first</option>';
-
-    if (selectedVeterinarian !== "Select") {
-        // Show time slots container
-        timeSlotsContainer.style.display = "block";
-
-        // Add time slots based on the selected veterinarian
-        if (selectedVeterinarian === "vet1") {
-            // Add time slots for vet1
-            addTimeSlots(["9:00 AM", "11:00 AM", "2:00 PM"]);
-        } else if (selectedVeterinarian === "vet2") {
-            // Add time slots for vet2
-            addTimeSlots(["10:00 AM", "1:00 PM", "3:00 PM"]);
-        }
-        // Add more conditions for other veterinarians if needed
-    } else {
-        // Hide time slots container if "Select" is chosen
-        timeSlotsContainer.style.display = "none";
-    }
+    document.getElementById("slot").innerHTML = data;
+  }
 }
 
-function addTimeSlots(slots) {
-    var timeSlotsSelect = document.getElementById("timeSlots");
-    for (var i = 0; i < slots.length; i++) {
-        var option = document.createElement("option");
-        option.value = slots[i];
-        option.text = slots[i];
-        timeSlotsSelect.add(option);
+async function bookAppointment() {
+  // Perform validation checks
+  var name = document.getElementById("name").value;
+  var contactNumber = document.getElementById("contactNumber").value;
+  var service = document.getElementById("service").value;
+  var species = document.getElementById("species").value;
+  var date = document.getElementById("date").value;
+  var slot = document.getElementById("slot").value;
+  var additionalNote = document.getElementById("additionalNote").value;
+
+  const checkDay = new Date(date);
+  console.log(checkDay.getDay());
+
+  // Validation for the name
+  var nameRegex = /^[a-zA-Z ]{1,12}$/; // Regex for alphabets only, up to 12 characters
+  if (!nameRegex.test(name)) {
+    alert(
+      "Please enter a valid name with alphabets only, up to 12 characters."
+    );
+    return false;
+  }
+
+  // Validate the contact number
+  var contactRegex = /^\+92[0-9]{10}$/; // Regex for a valid Pakistani phone number starting with +92
+  if (!contactRegex.test(contactNumber)) {
+    alert("Please enter a valid Pakistani contact number starting with +92.");
+    return false;
+  }
+
+  if (service === "Select") {
+    alert("Please select a service.");
+    return false;
+  }
+
+  if (species === "Select") {
+    alert("Please select a species.");
+    return false;
+  }
+
+  if (date === "") {
+    alert("Please select a date.");
+    return false;
+  }
+
+  if (slot === "Select") {
+    alert("Please select a slot.");
+    return false;
+  }
+
+  const appointment = {
+    userName: name,
+    phoneNumber: contactNumber,
+    service: service,
+    specie: species,
+    date: date,
+    additionalNotes: additionalNote,
+    vet: {
+        id: vetId
+    },
+    availableSlots: {
+        id: slot
     }
+  }
+
+  const token = localStorage.getItem("jwt");
+  let response = await fetch(
+    `http://localhost:8080/api/appointment`,
+    {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(appointment)
+    }
+  );
+
+  response = await response.json();
+
+  if (response.status === 403) {
+    window.location.href = "customersignin.html";
+    alert("Forbidden: You do not have permission to access this resource.");
+  }
+  if (response.status === 401) {
+    window.location.href = "customersignin.html";
+  } else if (response.status == 200) {
+    alert("Appointment form has been submitted successfully");
+    window.location.href = "home.html";
+  }
 }
-
-

@@ -44,6 +44,9 @@ class SecurityConfigure extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/sign-up").permitAll()
                 .antMatchers("/api/file/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/api/product/{id}").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/user/role").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/availableslots").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/user/{id}").permitAll()
                 .anyRequest().authenticated()
                 .and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);

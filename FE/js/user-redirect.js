@@ -12,7 +12,8 @@ function loginStatus(){
     }
 
     if(userDetails && userDetails.role == 'ROLE_ADMIN'){
-        userRedirection+= `<button style="background-color: #f1f1f1bd !important" type="button" class="btn btn-light" onClick=adminPanelRoute()>Admin Panel</button>`
+        userRedirection+= `<button style="background-color: #f1f1f1bd !important" type="button" class="btn btn-light" onClick=adminPanelRoute()>Admin Panel</button>`;
+        userRedirection+=`<button style="background-color: #f1f1f1bd !important;" type="button" class="btn btn-light" onClick=vetPanelRoute()>Vet Panel</button>`;
     }
 
     document.getElementById('login-status').innerHTML = data;
@@ -32,4 +33,8 @@ function logInOrOut(){
 
 function redirectToCustomerPanel(){
     window.location.href = 'home.html';
+}
+
+function vetPanelRoute(){
+    window.location.href = 'vet-table.html';
 }

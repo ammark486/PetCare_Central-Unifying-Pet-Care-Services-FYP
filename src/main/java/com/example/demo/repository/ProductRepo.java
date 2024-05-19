@@ -25,5 +25,7 @@ public interface ProductRepo extends JpaRepository<Product, Long> {
             " FROM Product p INNER JOIN p.category c INNER JOIN c.productType pt WHERE p.category.id = :id AND p.isActive = :isActive")
     Page<ProductDto> findByCategoryId(Long id, Boolean isActive, Pageable pageable);
 
+    List<Product> findByIdIn(List<Long> productIds);
+
 //    "INNER JOIN pet.product_type pt ON c.product_type_id = pt.id;
 }

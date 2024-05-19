@@ -40,7 +40,7 @@ async function login(){
        if(result.userDetailsDto.role == 'ROLE_ADMIN'){
         window.location.href = 'admindashboard.html';
        }else if(result.userDetailsDto.role == 'ROLE_VET'){
-
+        window.location.href = 'vet-table.html';
        }else{
         window.location.href = 'home.html';
        }
