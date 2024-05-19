@@ -89,6 +89,37 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
+
+// BLOG SECTION(READ MORE BUTTON) ////
+/*---------------------------- Blogs(Read More button connectivity) ------------------------------------------- */
+
+  // Function to redirect to different blog pages
+  function redirectToBlogPage(pageNumber) {
+    // Define the URLs for each blog page
+    const blogPages = {
+      1: "blog1.html",
+      2: "blog2.html",
+      3: "blog3.html"
+    };
+
+    // Get the URL for the selected blog page
+    const selectedPage = blogPages[pageNumber];
+
+    // Redirect to the selected blog page
+    window.location.href = selectedPage;
+  }
+
+  // Attach click event listeners to the "Read More" buttons
+  document.querySelectorAll('.main-btn').forEach(button => {
+    button.addEventListener('click', function() {
+      // Get the data-page attribute value from the button
+      const pageNumber = parseInt(this.getAttribute('data-page'));
+
+      // Redirect to the corresponding blog page
+      redirectToBlogPage(pageNumber);
+    });
+  });
+
 //vet consultation hour
 function editConsultationHours() {
   // Add functionality for the edit button here
