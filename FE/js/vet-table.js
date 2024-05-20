@@ -43,6 +43,7 @@ async function getAppointments(type) {
           <td>${el.specie}</td>
           <td>${el.service}</td>
           <td>${el.date}</td>
+          <td>${el.availableSlots.name}</td>
           <td>
             <button onClick="completeAppoinment(${el.id}, '${
         el.status ? "Completed" : "In Progress"
@@ -56,7 +57,10 @@ async function getAppointments(type) {
     });
 
     document.getElementById("appointment-table").innerHTML = data;
-  }
+  }else {
+    document.getElementById("appointment-table").innerHTML = ''
+    alert(response.message);
+}
 }
 
 async function completeAppoinment(id, status) {

@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.constants.StatusCode;
+import com.example.demo.exception.RecordNotFoundException;
 import com.example.demo.model.Appointment;
 import com.example.demo.model.AvailableSlots;
 import com.example.demo.model.User;
@@ -58,11 +59,12 @@ public class AppointmentService {
     }
 
     public Message<Appointment> bookAppointment(Appointment appointment, Principal principal) throws MessagingException {
-        Message<User> user = this.userService.getUsersByById(appointment.getVet().getId());
+        User user = this.userService.findById(appointment.getVet().getId());
         AvailableSlots availableSlots = this.availableSlotsService.findById(appointment.getAvailableSlots().getId());
-        String appointmentMessage = "<P>Thank you for booking the appointment. Your appointment has been confirmed with:" +user.getData().getFullName()+". It is scheduled for "+appointment.getDate()+" at "+availableSlots.getName()+". The payable amount is "+appointmentAmmount(appointment.getService())+".</P>";
+        String appointmentMessage = "<P>Thank you for booking the appointment. Your appointment has been confirmed with " +user.getFullName()+". It is scheduled for "+appointment.getDate()+" at "+availableSlots.getName()+". The payable amount is "+appointmentAmmount(appointment.getService())+".</P>";
         appointment.setStatus(false);
         appointment.setEmail(principal.getName());
+        appointment.setVet(user);
         Message<Appointment> message = new Message<>();
         message.setCode(StatusCode.OK.name());
         message.setStatus(StatusCode.OK.value());
@@ -72,21 +74,26 @@ public class AppointmentService {
         return message;
     }
 
-    public Message<List<Appointment>> getAppointments(String type) {
+    public Message<List<Appointment>> getAppointments(String type, Principal principal) {
+        User user = this.userService.findByUserName(principal.getName());
         List<Appointment> appointments;
         if(type.equalsIgnoreCase(this.APPOINTMENT_TYPE_UPCOMING)){
-            appointments = this.appointmentRepo.findUpcomingAppointments(LocalDate.now());
+            appointments = this.appointmentRepo.findUpcomingAppointments(LocalDate.now(), user.getId());
         }else if(type.equalsIgnoreCase(this.APPOINTMENT_TYPE_HISTORY)){
-            appointments = this.appointmentRepo.findByStatus(true);
+            appointments = this.appointmentRepo.findByStatusAndId(true, user.getId());
         }else {
-            appointments = this.appointmentRepo.findByDateAndStatus(LocalDate.now(), false);
+            appointments = this.appointmentRepo.findByDateAndStatusAndId(LocalDate.now(), false, user.getId());
         }
-        Message<List<Appointment>> message = new Message<>();
-        message.setCode(StatusCode.OK.name());
-        message.setStatus(StatusCode.OK.value());
-        message.setMessage("Fetch appointment successfully");
-        message.setData(appointments);
-        return message;
+
+        if(appointments.size() > 0){
+            Message<List<Appointment>> message = new Message<>();
+            message.setCode(StatusCode.OK.name());
+            message.setStatus(StatusCode.OK.value());
+            message.setMessage("Fetch appointment successfully");
+            message.setData(appointments);
+            return message;
+        }
+        throw new RecordNotFoundException("Appointments not found");
     }
 
     public Message<Appointment> completeAppointment(Long id) {

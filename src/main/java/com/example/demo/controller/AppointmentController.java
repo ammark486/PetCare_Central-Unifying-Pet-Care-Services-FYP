@@ -30,8 +30,8 @@ public class AppointmentController {
     }
 
     @GetMapping("/appointment")
-    ResponseEntity<Message<List<Appointment>>> getAppointments(@RequestParam String type){
-        return ResponseEntity.ok(this.appointmentService.getAppointments(type));
+    ResponseEntity<Message<List<Appointment>>> getAppointments(@RequestParam String type, Principal principal){
+        return ResponseEntity.ok(this.appointmentService.getAppointments(type, principal));
     }
 
     @PutMapping("/appointment/{id}")

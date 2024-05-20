@@ -26,7 +26,15 @@ async function getProductTypeCategories(){
     categories.data.forEach(category => {
         data += `<li><a class="dropdown-item" href="#" onclick="selectCategory(${category.id})">${category.name}</a></li>`
     });
-    selectCategory(categories.data[0].id);
+  
+    if(JSON.parse(localStorage.getItem("category_id"))){
+      selectCategory(JSON.parse(localStorage.getItem("category_id")));
+      localStorage.removeItem("category_id");
+    }else{
+      selectCategory(categories.data[0].id);
+    }
+
+
     document.getElementById("categories-dropdown").innerHTML = data;
     console.log(categories);
 }
@@ -55,7 +63,7 @@ async function selectCategory(categoryId){
           const colDiv = document.createElement('div');
           colDiv.className = 'col-md-4 mb-4 cursor-pointer';
           colDiv.addEventListener('click', function() {
-              // Redirect to product-view.html when clicking on the product
+            localStorage.setItem("category_id", JSON.stringify(selectedCategoryId));
               window.location.href = `product-view.html?productId=${product.id}`;
           });
 

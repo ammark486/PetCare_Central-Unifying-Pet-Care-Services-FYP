@@ -104,4 +104,8 @@ public class UserService {
         message.setData(user);
         return message;
     }
+
+    public User findById(Long id){
+        return this.userRepository.findById(id).get();
+    }
 }
