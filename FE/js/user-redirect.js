@@ -14,10 +14,20 @@ function loginStatus(){
     if(userDetails && userDetails.role == 'ROLE_ADMIN'){
         userRedirection+= `<button style="background-color: #f1f1f1bd !important" type="button" class="btn btn-light" onClick=adminPanelRoute()>Admin Panel</button>`;
         userRedirection+=`<button style="background-color: #f1f1f1bd !important;" type="button" class="btn btn-light" onClick=vetPanelRoute()>Vet Panel</button>`;
+
+        var buttons = `<div>
+        <button type="button" class="btn btn-light" onclick="adminPanelRoute()">Admin Panel</button>
+      </div>
+      <div style="margin-left: 3%;">
+        <button type="button" class="btn btn-light" onclick="redirectToCustomerPanel()">Customer Panel</button>
+      </div>
+      `
+
     }
 
     document.getElementById('login-status').innerHTML = data;
     document.getElementById('redirect-admin-panel').innerHTML = userRedirection;
+    document.getElementById('vet-routing').innerHTML = buttons;
 }
 
 function adminPanelRoute(){

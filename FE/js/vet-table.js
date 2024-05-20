@@ -1,3 +1,4 @@
+let permission_label = 'VET_PROFILE';
 let appointmentType;
 getAppointments("TODAY");
 async function getAppointments(type) {
