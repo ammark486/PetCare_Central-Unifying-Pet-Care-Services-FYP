@@ -3,6 +3,7 @@ let page = 0;
 let size = 10;
 let totalPages;
 let selectedCategoryId;
+let allProducts;
 
 function getQueryParam(name) {
     const urlParams = new URLSearchParams(window.location.search);
@@ -55,55 +56,27 @@ async function selectCategory(categoryId){
   const products = await response.json();
 
   if(products.data.content.length > 0){
-      const productsContainer = document.getElementById('products-container');
-      productsContainer.innerHTML = '';
 
       totalPages = products.data.totalPages;
+      allProducts = products.data.content;
+      var data = ``;
       products.data.content.forEach(product => {
-          const colDiv = document.createElement('div');
-          colDiv.className = 'col-md-4 mb-4 cursor-pointer';
-          colDiv.addEventListener('click', function() {
-            localStorage.setItem("category_id", JSON.stringify(selectedCategoryId));
-              window.location.href = `product-view.html?productId=${product.id}`;
-          });
+        data+= `<div class="card cursor-pointer" style="width: 18rem; margin-left: 4%;">
+        <hr style="color: #007bff; height: 2px;">
 
-          const card = document.createElement('div');
-          card.className = 'card';
+        <img onclick="routeToProductView(${product.id})" style="min-height: 210px !important;
+        max-height: 210px !important;" class="card-img-top" src="${product.imageUrl}" alt="Card image cap">
+        <hr style="color: #007bff; height: 2px;">
 
-          const img = document.createElement('img');
-          img.src = product.imageUrl;
-          img.className = 'card-img-top';
-          img.alt = product.name;
-
-          const cardBody = document.createElement('div');
-          cardBody.className = 'card-body';
-
-          const title = document.createElement('h2');
-          title.className = 'card-title';
-          title.textContent = product.name;
-
-          const text = document.createElement('p');
-          text.className = 'card-text';
-          text.textContent = product.price;
-
-          const button = document.createElement('a');
-          button.className = 'btn btn-purple';
-          button.textContent = 'Add to Cart';
-
-          button.addEventListener('click', function(event) {
-              event.stopPropagation(); // Prevents the click event from propagating to the colDiv
-              addToCart(product);
-          });
-
-
-          cardBody.appendChild(title);
-          cardBody.appendChild(text);
-          cardBody.appendChild(button);
-          card.appendChild(img);
-          card.appendChild(cardBody);
-          colDiv.appendChild(card);
-          productsContainer.appendChild(colDiv);
+        <div class="card-body">
+          <h5 class="card-title">${product.price} Rs</h5>
+          <p class="card-text">${product.description}</p>
+          <button class="btn btn-primary" style="background-color: #fc5185" onclick="addToCart(${product.id})">Add to Cart</button>
+        </div>
+      </div>`
       });
+
+      document.getElementById('products-container').innerHTML = data;
 
       // Clear previous pagination
       document.getElementById('pagination-row').innerHTML = '';
@@ -158,6 +131,15 @@ function next(){
 function previous(){
     page-=1;
     selectCategory(selectedCategoryId);
+}
+
+function routeToProductView(productId){
+  localStorage.setItem("category_id", JSON.stringify(selectedCategoryId));
+  window.location.href = `product-view.html?productId=${productId}`;
+}
+
+function getProductDetails(productId) {
+  return allProducts.find(p => p.id === productId);
 }
 
 

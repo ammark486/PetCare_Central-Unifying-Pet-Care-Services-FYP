@@ -29,7 +29,8 @@ function saveCart(cart) {
 }
 
 
-function addToCart(product) {
+function addToCart(productId) {
+  const product = getProductDetails(productId);
   const productWithQuantity = { ...product, quantity: 1 };
   saveCart(productWithQuantity);
   updateCart();

@@ -139,7 +139,7 @@ p{
     color:var(--text-gray);
     line-height: 1.625rem;
 } 
-.card{
+.show-card{
     border-radius: .625rem;
     background-color:var(--bg-white);
     box-shadow: .5084rem 1.1419rem 2.5rem 0 rgb(0 0 0 / 8%);
@@ -501,7 +501,7 @@ header h1 {
     max-width: 100%;
 }
 
-.card-img-top {
+.show-card-img-top {
     max-width: 100%;
     max-height: 300px;
     height: auto;
