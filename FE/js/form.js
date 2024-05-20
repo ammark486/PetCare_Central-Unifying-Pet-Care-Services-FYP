@@ -1,3 +1,5 @@
+let permission_label = 'APPOINTMENT';
+
 let user;
 let vetId;
 let availableDays = [];
