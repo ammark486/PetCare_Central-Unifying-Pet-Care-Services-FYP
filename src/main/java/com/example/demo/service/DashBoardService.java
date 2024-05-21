@@ -11,10 +11,12 @@ public class DashBoardService {
 
     private final UserService userService;
     private final MasterOrderService masterOrderService;
+    private final AppointmentService appointmentService;
 
-    public DashBoardService(UserService userService, MasterOrderService masterOrderService) {
+    public DashBoardService(UserService userService, MasterOrderService masterOrderService, AppointmentService appointmentService) {
         this.userService = userService;
         this.masterOrderService = masterOrderService;
+        this.appointmentService = appointmentService;
     }
 
     public Message<DashboardAllDto> getAllData() {
@@ -22,6 +24,7 @@ public class DashBoardService {
         DashboardAllDto dashBoardAllDto = DashboardAllDto.builder().
                 userCount(this.userService.countAllUsers())
                 .totalSales(this.masterOrderService.getTotalSales())
+                .completedAppointment(this.appointmentService.getCompletedAppointmenCount())
                 .build();
         message.setCode(StatusCode.OK.name());
         message.setStatus(StatusCode.OK.value());
@@ -35,6 +38,7 @@ public class DashBoardService {
         DashboardAllDto dashBoardAllDto = DashboardAllDto.builder().
                 userCount(this.userService.countAllUsersByYear(year))
                 .totalSales(this.masterOrderService.getTotalSalesByYear(year))
+                .completedAppointment(this.appointmentService.getCompletedAppointmenYearlyCount(year))
                 .build();
 
         DashboardYearDto dashboardYearDto = DashboardYearDto.builder()

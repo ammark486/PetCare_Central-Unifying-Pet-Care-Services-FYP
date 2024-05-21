@@ -107,6 +107,14 @@ public class AppointmentService {
         return message;
     }
 
+    Long getCompletedAppointmenCount(){
+        return this.appointmentRepo.getAllCompletedAppointments(true);
+    }
+
+    Long getCompletedAppointmenYearlyCount(String year){
+        return this.appointmentRepo.getCompletedAppointmenYearlyCount(year);
+    }
+
     private String appointmentAmmount(String service){
         if(service.equalsIgnoreCase("surgeries")){
             return "5000";

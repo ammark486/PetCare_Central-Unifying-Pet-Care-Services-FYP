@@ -7,20 +7,53 @@
 
      <!-- FAVICON -->
      <link rel="icon" type="image/png" href="images/favicon.png">
-
       <!-- Bootstrap 5 CDN Links -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  
-      <!-- Custom File's Link -->
-      <link rel="stylesheet" href="css/style.css">
-      <link rel="stylesheet" href="css/responsive-style.css">
-      <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Outlined" rel="stylesheet">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive-style.css">
 
 </head>
 <body>
+<!-- <style>
+              .product-box {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 100%;
+            margin: 50px auto;
+            display: flex;
+            align-items: flex-start;
+        }
+        .product-image img {
+            max-width: 250px;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+        .product-details {
+            text-align: left;
+            flex: 1;
+        }
+        .product-name {
+            font-size: 20px;
+            color: #888;
+            margin: 15px 0;
+        }
+        .product-price {
+            font-size: 20px;
+            color: #888;
+            margin: 10px 0;
+        }
+        .product-description {
+            font-size: 16px;
+            margin: 15px 0;
+            color: #888;
+        }
+</style> -->
 
     <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="100">
     
@@ -73,6 +106,7 @@
                 <div id="login-status" style="margin-left: 3%;">
 
                 </div>
+
                    </nav>
                   </div>
                 </div>
@@ -81,105 +115,116 @@
     
         <!-- Navbar section exit -->
 
-        <!--Dog design section---> 
-        <section id="dogdesign" class="footer_wrapper wrapper" >
+        <!--Product view design section ---> 
+        <section id="productviewdesign" class="footer_wrapper wrapper" >
             <div class="container">
                 <div class="row text-center">
                     <div class="col-md-12 mb-5">
-                        <div id="type-text">
-                            <img decoding="async" src="https://cdn.pixabay.com/photo/2022/09/24/19/47/dog-7477112_640.png" class="img-fluid" style="max-width: 100px;">
-                            
+                        <div>
+                            <h2 style="color: white; margin-top: 20px;">PRODUCT DESCRIPTION</h2>
                         </div>
                     </div>
                     
                 </div>
             </div>
         </section>
-         <!--Dog design section exit---> 
+         <!--Product view design section exit---> 
 
-             <!--Dog section---> 
-          <!--Dog section--->
-<section id="product1" class="blog_wrapper wrapper">
-    
-    <div class="row">
-        <div id="product-name" class="col-6 text-center">
+          <!--Product view section ---> 
+          
+          <section id="productdescription" class="about_wrapper wrapper">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 text-center text-md-start">
+                        <div class="product-box">
+                            <div id="product-image">
+                            </div>
+                            <div class="product-details">
+                                <!-- <div class ="h6">Product Name</div> -->
+                                <div id="product-name" style=" font-size: 20px;
+                                color: #888;
+                                margin: 15px 0;"></div>
+                                <!-- <div class ="h6">Age</div> -->
+                                <div id="product-age" style="font-size: 20px;
+                                color: #888;
+                                margin: 15px 0;"></div>
+                                <!-- <div class ="h6">color</div> -->
+                                <div id="product-color" style="font-size: 20px;
+                                color: #888;
+                                margin: 15px 0;"></div>
+                                <!-- <div class ="h6">Price</div> -->
+                                <div id="product-price"  style="font-size: 20px;
+                                color: #888;
+                                margin: 15px 0;"></div>
+                                <!-- <div class ="h6">Description</div> -->
+                                <div id="product-description" style=" font-size: 20px;
+                                color: #888;
+                                margin: 15px 0;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        </div>
-        <div id="product-price" class="col-6 text-center">
-        </div>
-    </div>
-
-    <div class="row" style="margin-top: 5%;">
-        <div id="product-age" class="col-6 text-center">
-
-        </div>
-        <div id="product-color" class="col-6 text-center">
-
-        </div>
-    </div>
-
-    <div class="row" style="margin-top: 5%;">
-        <div id="product-description" class="col-6 text-center">
-
-        </div>
-        <div id="product-image" class="col-6 text-center">
-
-        </div>
-    </div>
-
-</section>
+          <!--Product view section exit ---> 
 
 
-<!-- Footer section --> 
-<section id="contact" class="footer_wrapper wrapper">
-    <div class="container pb-3">
-        <div class="row">
-            <div class="col-lg-3 col-md-6 mb-4">
-                <h5>Have a Question?</h5>
-                <p class="ps-0">At Pet Care Central, we're dedicated to guiding pet owners. We prioritize advice over sales, so feel free to ask us anything if you're confused about your pet's needs.</p>
-                <div class="contact-info">
-                    <ul class="list-unstyled p-0">
-                        <li><a href="#"><i class="fa fa-envelope me-3"></i>info@petcarecentral.com</a></li>
+
+
+
+       <!-- Footer section -->
+    <section id="contact" class="footer_wrapper wrapper">
+        <div class="container pb-3">
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5>Have a Question?</h5>
+                    <p class="ps-0">At Pet Care Central, we're dedicated to guiding pet owners. We prioritize advice
+                        over sales, so feel free to ask us anything if you're confused about your pet's needs.</p>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5>Top Product</h5>
+                    <ul class="link-widget p-0">
+                        <li><a href="#">Pets</a></li>
+                        <li><a href="#">Pet Accessories</a></li>
+                        <li><a href="#">Pet Food</a></li>
+                        <li><a href="#">Grooming Supplies</a></li>
                     </ul>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <h5>Top Product</h5>
-                <ul class="link-widget p-0">
-                    <li><a href="#">Pets</a></li>
-                    <li><a href="#">Pet Accessories</a></li>
-                    <li><a href="#">Pet Food</a></li>
-                </ul>
-            </div>
-            <div class="col-lg-3 col-md-6 mb-4">
-                <h5>Services</h5>
-                <ul class="link-widget p-0">
-                    <li><a href="#">Vaccination</a></li>
-                    <li><a href="#">Pet Grooming</a></li>
-                    <li><a href="#">Surgeries</a></li>
-                    <li><a href="#">Dental Care</a></li>
-                    <li><a href="#">General Checkup & Consultation</a></li>
-                    <li><a href="#">Diagnostic tests</a></li>
-                    <li><a href="#">General Treatment</a></li>
-                </ul>
-            </div>
-
-            <div class="col-lg-3 col-md-6 mb-4">
-                <h5>Contact Us</h5>
-                <div class="form-group mb-4">
-                    <input type="email" class="form-control bg-transparent" placeholder="Enter Your Email Here">
-                    <button type="submit" class="main-btn rounded-2 mt-3 border-white text-white">Submit</button>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5>Services</h5>
+                    <ul class="link-widget p-0">
+                        <li><a href="#">Vaccination</a></li>
+                        <li><a href="#">Pet Grooming</a></li>
+                        <li><a href="#">Surgeries</a></li>
+                        <li><a href="#">Dental Care</a></li>
+                        <li><a href="#">General Checkup & Consultation</a></li>
+                        <li><a href="#">Diagnostic tests</a></li>
+                        <li><a href="#">General Treatment</a></li>
+                    </ul>
                 </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5>Contact Us</h5>
+                    <div class="contact-info">
+                        <ul class="list-unstyled p-0">
+                            <li><a href="mailto:info@petcarecentral.com"><i class="fa fa-envelope me-3"></i>info@petcarecentral.com</a></li>
+                        </ul>
+                    </div>
+                    
+                </div>
+
+
+
             </div>
-
         </div>
-    </div>
-    <div class="container-fluid copyright-section">
-        <p class="p-0">Copyright <a href="#">© PETCARECENTRAL.</a> All Rights Reserved</p>
-    </div>
-</section>
+        <div class="container-fluid copyright-section">
+            <p class="p-0">Copyright <a href="#">© PETCARECENTRAL.</a> All Rights Reserved</p>
+        </div>
+    </section>
 
-<!-- Footer section exit -->
+    <!-- Footer section exit -->
 
 
  <!-- Bootstrap 5 JS CDN Links -->
@@ -189,11 +234,14 @@
 
 <!-- Custom script for loading products -->
 
-   <script src="js/navbar.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/product-view.js"></script>
-  <script src="js/user-redirect.js"></script>
-  <!-- <script src="js/sidebar.js"></script> -->
+<script src="js/navbar.js"></script>
+<script src="js/main.js"></script>
+<script src="js/product-view.js"></script>
+<script src="js/user-redirect.js"></script>
+
+  
+  <!-- <script src="js/cart.js"></script> -->
+
 
 
 </body>

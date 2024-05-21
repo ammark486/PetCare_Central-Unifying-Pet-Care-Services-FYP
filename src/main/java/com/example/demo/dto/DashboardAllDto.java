@@ -10,4 +10,6 @@ import lombok.*;
 public class DashboardAllDto {
     private Long userCount;
     private Long totalSales;
+    private Long totalVets;
+    private Long completedAppointment;
 }

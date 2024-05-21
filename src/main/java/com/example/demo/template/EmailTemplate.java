@@ -3,6 +3,7 @@ package com.example.demo.template;
 
 import com.example.demo.dto.ProductTemplateDto;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class EmailTemplate {
@@ -91,6 +92,7 @@ public class EmailTemplate {
 
     public static String getOrderTemplate(List<ProductTemplateDto> productTemplateDtos, String address, String total){
         StringBuilder tableRows = new StringBuilder();
+        LocalDate today = LocalDate.now();
 
         for (ProductTemplateDto product : productTemplateDtos) {
             tableRows.append("<tr style=\"text-align: center;\">\n")
@@ -253,7 +255,7 @@ public class EmailTemplate {
                 "                                    <tr>\n" +
                 "                                        <td align=\"left\" valign=\"top\" style=\"font-family: Open Sans, Helvetica, Arial, sans-serif; font-size: 16px; font-weight: 400; line-height: 24px;\">\n" +
                 "                                            <p style=\"font-weight: 800;\">Estimated Delivery Date</p>\n" +
-                "                                            <p>January 1st, 2016</p>\n" +
+                "                                            <p>"+ today.plusDays(6)  +"</p>\n" +
                 "                                        </td>\n" +
                 "                                    </tr>\n" +
                 "                                </table>\n" +

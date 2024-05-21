@@ -19,4 +19,10 @@ public interface AppointmentRepo extends JpaRepository<Appointment, Long> {
     List<Appointment> findByStatusAndId(@Param("status") Boolean b, @Param("id") Long id);
     @Query("SELECT a FROM Appointment a WHERE a.date = :date AND a.status = :status AND a.vet.id = :id")
     List<Appointment> findByDateAndStatusAndId(@Param("date") LocalDate date, @Param("status") Boolean status, @Param("id") Long id);
+
+    @Query(value = "select count(a.id) from Appointment a where a.status = true")
+    Long getAllCompletedAppointments(@Param("status") Boolean b);
+
+    @Query(value = "SELECT COUNT(id) AS completedAppointment FROM appointment WHERE YEAR(date) = :year", nativeQuery = true)
+    Long getCompletedAppointmenYearlyCount(String year);
 }
