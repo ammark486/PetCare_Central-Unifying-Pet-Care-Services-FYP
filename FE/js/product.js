@@ -61,12 +61,14 @@ async function selectCategory(categoryId){
       allProducts = products.data.content;
       var data = ``;
       products.data.content.forEach(product => {
-        data+= `<div class="card cursor-pointer" style="width: 18rem; margin-left: 4%;">
-        <hr style="color: #007bff; height: 2px;">
+        data+= `<div class="card cursor-pointer mt-4" style="width: 18rem; margin-left: 4%;">
+        <hr style="color: #0040ff;
+        height: 2.5px;;">
 
         <img onclick="routeToProductView(${product.id})" style="min-height: 210px !important;
         max-height: 210px !important;" class="card-img-top" src="${product.imageUrl}" alt="Card image cap">
-        <hr style="color: #007bff; height: 2px;">
+        <hr style="color: #0040ff;
+        height: 2.5px;">
 
         <div class="card-body">
           <h5 class="card-title">${product.price} Rs</h5>
