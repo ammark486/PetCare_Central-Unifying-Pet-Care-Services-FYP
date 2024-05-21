@@ -34,6 +34,8 @@ async function getAllVets(){
                     <h2 class="vet-name color-black">${el.fullName}</h2>
                     <p class="vet-location"><strong>Location:</strong> Defence, KHI</p>
                     <p class="vet-bio">${el.bio}</p>
+                    <p class="vet-location"><strong>Consultation Days:</strong> ${el.availableDays}</p>
+                    <p class="vet-location"><strong>Charges:</strong> Surgery (Rs 5000), Vaccination (Rs 500), Pet Grooming (Rs 1000), General Treatment (Rs 1000), General Checkup (Rs 500), Dentalcare (Rs 2000), Diagnostic Test (Rs 500 - Rs 5000)</p>
                 </div>
             </div>
         </div>
