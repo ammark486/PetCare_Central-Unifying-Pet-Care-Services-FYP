@@ -17,5 +17,17 @@ public interface UserRepository extends JpaRepository<User,Long>, JpaSpecificati
 
     @Query("SELECT u FROM User u JOIN u.roles r WHERE r.name = :role")
     List<User> getUsersByRole(String role);
+
+    @Query(value = "select count(u.id) as totalVets from user u \n" +
+            "inner join user_roles ur on u.id = ur.user_id\n" +
+            "inner join role r on r.id = ur.role_id\n" +
+            "where r.name = 'ROLE_VET'", nativeQuery = true)
+    Long getAllVets();
+
+    @Query(value = "select count(u.id) as totalVets from user u \n" +
+            "inner join user_roles ur on u.id = ur.user_id\n" +
+            "inner join role r on r.id = ur.role_id\n" +
+            "where r.name = 'ROLE_VET' and YEAR(u.registration_date) = :year", nativeQuery = true)
+    Long getAllVetsYearly(String year);
 }
 

@@ -113,7 +113,7 @@ async function bookAppointment() {
   }
 
   // Validate the contact number
-  var contactRegex = /^\+92[0-9]{10}$/; // Regex for a valid Pakistani phone number starting with +92
+  var contactRegex = /^0\d{10}$/; // Regex for a valid Pakistani phone number starting with +92
   if (!contactRegex.test(contactNumber)) {
     alert("Please enter a valid Pakistani contact number starting with +92.");
     return false;
@@ -176,7 +176,7 @@ async function bookAppointment() {
   if (response.status === 401) {
     window.location.href = "customersignin.html";
   } else if (response.status == 200) {
-    alert("Appointment form has been submitted successfully");
+    alert("Appointment has been booked successfully");
     window.location.href = "home.html";
   }
 }

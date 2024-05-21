@@ -77,7 +77,6 @@ a {
     text-transform: capitalize;
     border-radius: .1875rem;
     transition:all 0.3s ease-in-out;
-    background-color: #fc5185 !important
 }
 .main-btn:hover{
     background-color:var(--secondary-color);
@@ -328,7 +327,7 @@ p{
     animation-direction: alternate;
 }
 
-.home .card:hover{
+.home .show-card:hover{
     -webkit-transform:translateY(-0.625rem);
     transform:translateY(-0.625rem);
 }
@@ -354,7 +353,7 @@ p{
 .about_wrapper h2{
     color:var(--text-black);
 }
-.about_wrapper .card{
+.about_wrapper .show-card{
     width:80%;
     flex-direction: row;
     justify-content: space-between;
@@ -400,19 +399,19 @@ p{
 .services_wrapper {
     background-color:var(--primary-color);
 }
-.services_wrapper .card{
+.services_wrapper .show-card{
     background-color:transparent;
     border:.0625rem solid var(--bg-light-blue);
     box-shadow: none;
     padding:2.5rem;
 }
-.services_wrapper .card:hover{
+.services_wrapper .show-card:hover{
     background:var(--bg-light-blue);
     cursor:cell;
     border-color:transparent;
 }
-.services_wrapper .card h4,
-.services_wrapper .card p{
+.services_wrapper .show-card h4,
+.services_wrapper .show-card p{
     color:var(--text-white);
 }
 .services_wrapper .icon-box{
@@ -1063,6 +1062,14 @@ header h1 {
 
 .color-pink {
     color: #fc5185 !important
+}
+
+.blog {
+    background-color: var(--primary-color) !important;
+}
+
+.color-white {
+    color: white !important;
 }
 
 

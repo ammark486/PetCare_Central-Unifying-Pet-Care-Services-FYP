@@ -23,6 +23,6 @@ public interface AppointmentRepo extends JpaRepository<Appointment, Long> {
     @Query(value = "select count(a.id) from Appointment a where a.status = true")
     Long getAllCompletedAppointments(@Param("status") Boolean b);
 
-    @Query(value = "SELECT COUNT(id) AS completedAppointment FROM appointment WHERE YEAR(date) = :year", nativeQuery = true)
+    @Query(value = "SELECT COUNT(id) AS completedAppointment FROM appointment WHERE YEAR(date) = :year and status = true", nativeQuery = true)
     Long getCompletedAppointmenYearlyCount(String year);
 }

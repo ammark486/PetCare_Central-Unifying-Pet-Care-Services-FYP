@@ -256,7 +256,6 @@ async function addProduct() {
       id: Number(document.getElementById("category-by-product").value),
     },
   };
-  console.log(productDto);
 
   const token = localStorage.getItem("jwt");
   let response = await fetch("http://localhost:8080/api/product", {

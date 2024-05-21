@@ -4,6 +4,7 @@ let size = 10;
 let totalPages;
 let selectedCategoryId;
 let allProducts;
+let categories;
 
 function getQueryParam(name) {
     const urlParams = new URLSearchParams(window.location.search);
@@ -22,7 +23,7 @@ async function getProductTypeCategories(){
         },
     });
 
-    const categories = await response.json();
+    categories = await response.json();
     var data = '';
     categories.data.forEach(category => {
         data += `<li><a class="dropdown-item" href="#" onclick="selectCategory(${category.id})">${category.name}</a></li>`
@@ -43,6 +44,8 @@ async function getProductTypeCategories(){
 getProductTypeCategories();
 
 async function selectCategory(categoryId){
+  const filterCategory = categories.data.find(category => category.id == categoryId);
+  document.getElementById('categoryDropdown').innerText = filterCategory.name;
   selectedCategoryId = categoryId;
   const url = new URL(`http://localhost:8080/api/product/categoryId?id=${categoryId}&isActive=true&page=${page}&size=${size}`);
 
@@ -56,7 +59,7 @@ async function selectCategory(categoryId){
   const products = await response.json();
 
   if(products.data.content.length > 0){
-
+      
       totalPages = products.data.totalPages;
       allProducts = products.data.content;
       var data = ``;
@@ -71,8 +74,8 @@ async function selectCategory(categoryId){
         height: 2.5px;">
 
         <div class="card-body">
-          <h5 class="card-title">${product.price} Rs</h5>
-          <p class="card-text">${product.description}</p>
+          <h5 class="card-title">${product.name}</h5>
+          <p class="card-text">Rs ${product.price}</p>
           <button class="btn btn-primary" style="background-color: #fc5185" onclick="addToCart(${product.id})">Add to Cart</button>
         </div>
       </div>`

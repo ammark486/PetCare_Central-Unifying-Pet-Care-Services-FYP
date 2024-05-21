@@ -108,4 +108,12 @@ public class UserService {
     public User findById(Long id){
         return this.userRepository.findById(id).get();
     }
+
+    public Long getAllVets() {
+        return this.userRepository.getAllVets();
+    }
+
+    public Long getAllVetsYearly(String year) {
+        return this.userRepository.getAllVetsYearly(year);
+    }
 }

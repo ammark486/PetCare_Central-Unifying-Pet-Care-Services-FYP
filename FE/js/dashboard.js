@@ -213,12 +213,14 @@ async function getAllData() {
     var totalUser = `  <span>Total: </span><span style="padding-left: 4px;" class="text-primary font-weight-bold">${response.data.userCount}</span>`;
     var totalSales = `  <span>Total: </span><span style="padding-left: 4px;" class="text-primary font-weight-bold">${response.data.totalSales}</span>`;
     var totalAppointment = `  <span>Total: </span><span style="padding-left: 4px;" class="text-primary font-weight-bold">${response.data.completedAppointment}</span>`;
+    var totalVet = `  <span>Total: </span><span style="padding-left: 4px;" class="text-primary font-weight-bold">${response.data.totalVets}</span>`;
 
 
 
     document.getElementById("user-data-all").innerHTML = totalUser;
     document.getElementById("total-sales-all").innerHTML = totalSales;
     document.getElementById("total-appointment-all").innerHTML = totalAppointment;
+    document.getElementById("total-vet-all").innerHTML = totalVet;
   } else {
     console.error("Error:", response.message);
   }
@@ -253,12 +255,14 @@ async function getYearlyData(){
     <span style="padding-left: 4px;" class="text-primary font-weight-bold">${response.data.userAndSales.userCount}</span>`;
     var totalSales = ` <span>Yearly: </span>
     <span style="padding-left: 4px;" class="text-primary font-weight-bold">${response.data.userAndSales.totalSales}</span>`;
-    var totalAppointment = `  <span>Total: </span><span style="padding-left: 4px;" class="text-primary font-weight-bold">${response.data.userAndSales.completedAppointment}</span>`;
+    var totalAppointment = `  <span>Yearly: </span><span style="padding-left: 4px;" class="text-primary font-weight-bold">${response.data.userAndSales.completedAppointment}</span>`;
+    var totalVet = `  <span>Yearly: </span><span style="padding-left: 4px;" class="text-primary font-weight-bold">${response.data.userAndSales.totalVets}</span>`;
 
 
     document.getElementById("user-data-yearly").innerHTML = totalUser;
     document.getElementById("sales-data-yearly").innerHTML = totalSales;
     document.getElementById("appointment-data-yearly").innerHTML = totalAppointment;
+    document.getElementById("vet-data-yearly").innerHTML = totalVet;
     
     renderAreaChart(); // Call renderAreaChart after fetching and updating data
 

@@ -25,6 +25,7 @@ public class DashBoardService {
                 userCount(this.userService.countAllUsers())
                 .totalSales(this.masterOrderService.getTotalSales())
                 .completedAppointment(this.appointmentService.getCompletedAppointmenCount())
+                .totalVets(this.userService.getAllVets())
                 .build();
         message.setCode(StatusCode.OK.name());
         message.setStatus(StatusCode.OK.value());
@@ -39,6 +40,7 @@ public class DashBoardService {
                 userCount(this.userService.countAllUsersByYear(year))
                 .totalSales(this.masterOrderService.getTotalSalesByYear(year))
                 .completedAppointment(this.appointmentService.getCompletedAppointmenYearlyCount(year))
+                .totalVets(this.userService.getAllVetsYearly(year))
                 .build();
 
         DashboardYearDto dashboardYearDto = DashboardYearDto.builder()

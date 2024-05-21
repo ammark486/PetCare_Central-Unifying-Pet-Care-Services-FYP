@@ -111,7 +111,7 @@ async function orderForm() {
         window.location.href = 'customersignin.html';
     } else if (response.status == 200) {
       const responseData = await response.json();
-      alert("Order successfully submiited");
+      alert("Your order has been placed successfully");
       localStorage.removeItem("cart");
       window.location.href = 'home.html';
     } else {
