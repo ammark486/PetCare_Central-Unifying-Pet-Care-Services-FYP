@@ -28,6 +28,8 @@ public class User {
     private String availableDays;
     private boolean status;
     private LocalDate registrationDate;
+    @Transient
+    private Double rating;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles",

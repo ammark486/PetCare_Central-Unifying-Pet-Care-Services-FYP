@@ -156,13 +156,59 @@
         <div class="container-fluid copyright-section">
             <p class="p-0">Copyright <a href="#">© PETCARECENTRAL.</a> All Rights Reserved</p>
         </div>
+        
     </section>
+
+    <div class="modal fade" id="writeFeedbackModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Feedbacks</h5>
+            </div>
+            <div class="modal-body">
+                <div class="rating"> 
+                    <input type="radio" name="rating" value="5" id="5"><label for="5" onclick="rate(5)">☆</label>
+                    <input type="radio" name="rating" value="4" id="4"><label for="4" onclick="rate(4)">☆</label> 
+                    <input type="radio" name="rating" value="3" id="3"><label for="3" onclick="rate(3)">☆</label>
+                    <input type="radio" name="rating" value="2" id="2"><label for="2" onclick="rate(2)">☆</label>
+                    <input type="radio" name="rating" value="1" id="1"><label for="1" onclick="rate(1)">☆</label>
+                </div>
+              <input type="hidden" id="feedback-rating" value="5"> <!-- Hidden input to store the rating -->
+              <textarea class="form-control mt-2" id="feedback-comment" placeholder="Leave your feedback here..." rows="3"></textarea>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeWriteFeedbackModal()">Close</button>
+              <button type="button" class="btn btn-primary" onclick="submitFeedback()">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="viewFeedbackModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Feedbacks</h5>
+            </div>
+            <div class="modal-body">
+              <!-- Feedbacks content will be inserted here dynamically -->
+              No feedbacks yet.
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="closeViewFeedbackModal()">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
 
     <!-- Footer section exit -->
 
     <!-- Bootstrap 5 JS CDN Links -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- Custom Js Link -->
     <script src="js/main.js"></script>

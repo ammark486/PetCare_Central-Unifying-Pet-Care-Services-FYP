@@ -1072,6 +1072,70 @@ header h1 {
     color: white !important;
 }
 
+.star-rating {
+    direction: rtl;
+    display: inline-flex;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.star {
+    /* color: #ccc; */
+    color: gold;
+}
+
+/* .star:hover,
+.star:hover ~ .star,
+.star.selected {
+    color: gold;
+}
+
+.rating-value {
+    margin-top: 5px;
+    font-size: 1rem;
+    color: #555;
+} */
+
+
+.rating {
+    display: flex;
+           margin-top: -10px;
+       flex-direction: row-reverse;
+       margin-left: -4px;
+           float: left;
+   }
+   
+   .rating>input {
+       display: none
+   }
+   
+   .rating>label {
+           position: relative;
+       width: 19px;
+       font-size: 25px;
+       color: gold;
+       cursor: pointer;
+   }
+   
+   .rating>label::before {
+       content: "\2605";
+       position: absolute;
+       opacity: 0
+   }
+   
+   .rating>label:hover:before,
+   .rating>label:hover~label:before {
+       opacity: 1 !important
+   }
+   
+   .rating>input:checked~label:before {
+       opacity: 1
+   }
+   
+   .rating:hover>input:checked~label:before {
+       opacity: 0.4
+   }
+
 
 
 
