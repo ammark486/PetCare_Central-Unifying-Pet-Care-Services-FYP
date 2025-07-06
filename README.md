@@ -41,14 +41,6 @@ A Final Year Project that revolutionizes pet care through a **comprehensive, rol
 
 ---
 
-## 📸 Screenshots
-
-> Add screenshots of your Customer, Admin, and Vet dashboards here  
-> You can upload images to your repo and link them like:  
-> `![Customer Panel](screenshots/customer_panel.png)`
-
----
-
 ## 📦 Installation & Setup
 
 ```bash
